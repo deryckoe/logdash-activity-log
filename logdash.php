@@ -45,13 +45,4 @@ load_plugin_textdomain( LOGDASH_DOMAIN, false, LOGDASH_LANGUAGES_DIR . '/languag
 // Composer autoload
 require __DIR__ . '/vendor/autoload.php';
 
-use LogDash\ActivityLog;
-
-function LogDash_ActivityLog(): ActivityLog {
-	return ActivityLog::instance();
-}
-
-include LOGDASH_DIR . '/temp/raw-log.php';
-//include LOGDASH_DIR . '/temp/table.php';
-
-LogDash_ActivityLog()->init();
+LogDash\ActivityLog::instance()->init();

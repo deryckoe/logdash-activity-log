@@ -3,6 +3,7 @@
 namespace LogDash;
 
 use LogDash\Admin\Settings;
+use LogDash\API\Activation;
 use LogDash\Hooks\Meta;
 use LogDash\Hooks\Taxonomies;
 use LogDash\Hooks\Core;
@@ -36,6 +37,7 @@ class ActivityLog {
 	public function dependencies() {
 
 		$dependencies = [
+			Activation::class,
 			EventsPage::class,
 			Settings::class,
 			ResetLog::class,
