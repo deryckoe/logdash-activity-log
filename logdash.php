@@ -52,7 +52,6 @@ function LogDash_ActivityLog(): ActivityLog {
 }
 
 include LOGDASH_DIR . '/temp/raw-log.php';
-include LOGDASH_DIR . '/temp/table.php';
+//include LOGDASH_DIR . '/temp/table.php';
 
 LogDash_ActivityLog()->init();
-

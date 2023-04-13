@@ -13,6 +13,7 @@ use LogDash\Hooks\Users;
 use LogDash\Hooks\Files;
 use LogDash\Actions\RemoveExpiredLog;
 use LogDash\Actions\ResetLog;
+use LogDash\Admin\EventsPage;
 
 class ActivityLog {
 
@@ -35,6 +36,7 @@ class ActivityLog {
 	public function dependencies() {
 
 		$dependencies = [
+			EventsPage::class,
 			Settings::class,
 			ResetLog::class,
 			RemoveExpiredLog::class,
@@ -56,10 +58,8 @@ class ActivityLog {
 	}
 
 	function adminAssets() {
-		wp_enqueue_script( 'logdash-activity-log', LOGDASH_URL . 'assets/build/index.js', [
-			'wp-api',
-			'wp-element'
-		], LOGDASH_VERSION, true );
+		$js_dependencies = [ 'wp-api', 'wp-element' ];
+		wp_enqueue_script( 'logdash-activity-log', LOGDASH_URL . 'assets/build/index.js', $js_dependencies, LOGDASH_VERSION, true );
 		wp_enqueue_style( 'logdash-activity-log', LOGDASH_URL . 'assets/build/index.css', [], LOGDASH_VERSION );
 	}
 

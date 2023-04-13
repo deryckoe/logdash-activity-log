@@ -161,8 +161,8 @@ class Meta extends HooksBase {
 				$details =
 					array_merge( $details, [
 						new Specification( __( 'Meta key', LOGDASH_DOMAIN ), $meta_data['postMetaKey'] ),
-						new Specification( __( 'Old value', LOGDASH_DOMAIN ), $meta_data['postOldMetaValue'] ),
-						new Specification( __( 'New value', LOGDASH_DOMAIN ), $meta_data['postNewMetaValue'] ),
+						new Specification( __( 'Old value', LOGDASH_DOMAIN ), new Before( $meta_data['postOldMetaValue'] ) ),
+						new Specification( __( 'New value', LOGDASH_DOMAIN ), new After( $meta_data['postNewMetaValue'] ) ),
 					] );
 				break;
 

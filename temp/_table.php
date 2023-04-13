@@ -33,11 +33,11 @@ class User_List_Table extends WP_List_Table {
 
 		return [
 //			'cb'          => '<input type="checkbox" />', // to display the checkbox.
-			'id'          => __( 'ID', $this->plugin_text_domain ),
+//			'id'          => __( 'ID', $this->plugin_text_domain ),
+			'event_code'  => __( 'Code', $this->plugin_text_domain ),
 			'created'     => __( 'Date', $this->plugin_text_domain ),
 			'user_id'     => __( 'User', $this->plugin_text_domain ),
 			'user_ip'     => __( 'IP', $this->plugin_text_domain ),
-//			'event_code'  => __( 'Code', $this->plugin_text_domain ),
 			'object_type' => __( 'Context', $this->plugin_text_domain ),
 			'event_type'  => __( 'Action', $this->plugin_text_domain ),
 			'event_meta'  => __( 'Meta ', $this->plugin_text_domain ),
@@ -206,7 +206,7 @@ class User_List_Table extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'id':
-                return $item['ID'];
+				return $item['ID'];
 			case 'event_type':
 				return EventTypes::label( $item[ $column_name ] );
 			case 'event_code':
@@ -215,8 +215,8 @@ class User_List_Table extends WP_List_Table {
 			case 'object_type':
 				$output = ucfirst( $item[ $column_name ] );
 
-				if ( ! empty( $item['object_subtype'] ) && $item['object_subtype'] !== $item[$column_name] ) {
-					$output.= ' (' . ucfirst($item['object_subtype']) . ')';
+				if ( ! empty( $item['object_subtype'] ) && $item['object_subtype'] !== $item[ $column_name ] ) {
+					$output .= ' (' . ucfirst( $item['object_subtype'] ) . ')';
 				}
 
 				return $output;
@@ -262,8 +262,8 @@ HTML;
 
 			case 'created':
 
-                $format = 'Y-m-d H:i:s';
-                $gmt_date =  date( $format, (int) $item[ $column_name ] );
+				$format               = 'Y-m-d H:i:s';
+				$gmt_date             = date( $format, (int) $item[ $column_name ] );
 				$date                 = get_date_from_gmt( $gmt_date, $format );
 				$time_diff            = human_time_diff( strtotime( $date ), current_time( 'U' ) );
 				$translated_time_diff = __( sprintf( '%s ago', $time_diff ) );
@@ -349,11 +349,12 @@ HTML;
 			$selected_date_show = isset( $_GET['dateshow'] ) ? $_GET['dateshow'] : '';
 
 			?>
-            <select name="dateshow" id="temp-1">
+			<select name="dateshow" id="temp-1">
 				<?php foreach ( $date_show as $value => $label ) : ?>
-                    <option value="<?php echo $value ?>" <?php selected( $selected_date_show, $value ) ?>><?php echo $label ?></option>
+					<option
+						value="<?php echo $value ?>" <?php selected( $selected_date_show, $value ) ?>><?php echo $label ?></option>
 				<?php endforeach; ?>
-            </select>
+			</select>
 
 			<?php
 
@@ -368,12 +369,13 @@ HTML;
 
 			?>
 
-            <select name="capshow" id="temp-2">
-                <option value=""><?php _e( 'All Roles' ) ?></option>
+			<select name="capshow" id="temp-2">
+				<option value=""><?php _e( 'All Roles' ) ?></option>
 				<?php foreach ( $caps_results as $cap ) : ?>
-                    <option value="<?php echo $cap->user_caps ?>" <?php selected( $selected_cap, $cap->user_caps ) ?>><?php echo translate_user_role( ucfirst( $cap->user_caps ) ) ?></option>
+					<option
+						value="<?php echo $cap->user_caps ?>" <?php selected( $selected_cap, $cap->user_caps ) ?>><?php echo translate_user_role( ucfirst( $cap->user_caps ) ) ?></option>
 				<?php endforeach; ?>
-            </select>
+			</select>
 
 			<?php
 
@@ -384,13 +386,14 @@ HTML;
 			$selected_user = isset( $_GET['usershow'] ) ? $_GET['usershow'] : '';
 
 			?>
-            <select name="usershow" id="temp-3">
-                <option value="">All Users</option>
+			<select name="usershow" id="temp-3">
+				<option value="">All Users</option>
 				<?php foreach ( $users_result as $user ) : ?>
 					<?php $user_data = get_user_by( 'ID', $user->user_id ); ?>
-                    <option value="<?php echo $user->user_id ?>" <?php selected( $selected_user, $user->user_id ) ?>><?php echo $user_data->user_login ?></option>
+					<option
+						value="<?php echo $user->user_id ?>" <?php selected( $selected_user, $user->user_id ) ?>><?php echo $user_data->user_login ?></option>
 				<?php endforeach; ?>
-            </select>
+			</select>
 			<?php
 
 			$type_query = "SELECT
@@ -407,17 +410,17 @@ HTML;
 			$selected_type = isset( $_GET['subtypeshow'] ) ? $_GET['subtypeshow'] : '';
 
 			?>
-            <select name="subtypeshow" id="temp-4">
-                <option value="">All Contexts</option>
-				<?php  foreach ( $type_result as $type ) :
+			<select name="subtypeshow" id="temp-4">
+				<option value="">All Contexts</option>
+				<?php foreach ( $type_result as $type ) :
+					?>
+					<option value="<?php echo $type->object_subtype
+					?>" <?php selected( $selected_type, $type->object_subtype )
+					?>><?php echo ucfirst( $type->object_subtype )
+						?></option>
+				<?php endforeach;
 				?>
-                <option value="<?php  echo $type->object_subtype
-				?>" <?php  selected( $selected_type, $type->object_subtype )
-				?>><?php  echo ucfirst( $type->object_subtype )
-					?></option>
-				<?php  endforeach;
-				?>
-            </select>
+			</select>
 
 			<?php
 
@@ -435,14 +438,15 @@ HTML;
 			$selected_type = isset( $_GET['actionshow'] ) ? $_GET['actionshow'] : '';
 
 			?>
-            <select name="actionshow" id="temp-5">
-                <option value="">All Actions</option>
+			<select name="actionshow" id="temp-5">
+				<option value="">All Actions</option>
 				<?php foreach ( $action_result as $action ) : ?>
-                    <option value="<?php echo $action->event_type ?>" <?php selected( $selected_type, $action->event_type ) ?>><?php echo ucfirst( $action->event_type ) ?></option>
+					<option
+						value="<?php echo $action->event_type ?>" <?php selected( $selected_type, $action->event_type ) ?>><?php echo ucfirst( $action->event_type ) ?></option>
 				<?php endforeach; ?>
-            </select>
+			</select>
 
-            <input type="submit" name="filter" id="submit-13ert" class="button" value="Filter">
+			<input type="submit" name="filter" id="submit-13ert" class="button" value="Filter">
 			<?php
 
 			foreach ( $filters as $filter ) {
@@ -470,8 +474,13 @@ add_action( 'admin_menu', function () {
 		'logdash_load_user_list_table_screen_options',
 		$icon_url,
 		3 );
-
 } );
+
+add_action('admin_menu', function() {
+	global $submenu;
+
+	$submenu['logdash_activity_log'][0][0] = __( 'Activity Log', LOGDASH_DOMAIN );
+}, 90);
 
 function logdash_load_user_list_table_screen_options() {
 	$arguments = array(
@@ -484,24 +493,24 @@ function logdash_load_user_list_table_screen_options() {
 	$user_list_table = new User_List_Table( 'tally' );
 	$user_list_table->prepare_items();
 	?>
-    <div class="wrap">
+	<div class="wrap">
 
-        <div id="my-react-app"></div>
+		<div id="my-react-app"></div>
 
-        <h1 style="display: flex; align-items: center; gap: 5px;">
+		<h1 style="display: flex; align-items: center; gap: 5px;">
 			<?php _e( 'LogDash Activity', 'tally' ); ?>
-        </h1>
-        <div id="nds-wp-list-table-demo">
-            <div id="nds-post-body">
-                <form method="GET">
+		</h1>
+		<div id="nds-wp-list-table-demo">
+			<div id="nds-post-body">
+				<form method="GET">
 
 					<?php $user_list_table->search_box( __( 'Search' ), 's' ); ?>
 
-                    <input type="hidden" name="page" value="<?php echo $_GET['page']; ?>">
+					<input type="hidden" name="page" value="<?php echo $_GET['page']; ?>">
 					<?php $user_list_table->display(); ?>
-                </form>
-            </div>
-        </div>
-    </div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<?php
 }
