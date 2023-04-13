@@ -1,0 +1,17 @@
+{
+    "name": "deryck/logdash",
+    "type": "project",
+    "license": "GNU",
+    "autoload": {
+        "psr-4": {
+            "LogDash\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "deryck",
+            "email": "hello@deryckoe.com"
+        }
+    ],
+    "require": {}
+}
