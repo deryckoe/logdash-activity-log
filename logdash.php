@@ -8,7 +8,7 @@
  * Plugin Name:       LogDash Activity Log
  * Plugin URI:        https://deryckoe.com/logdash
  * Description:       The ultimate tool for tracking and analyzing the behavior of your website's users.
- * Version:           0.1-alpha
+ * Version:           1.0
  * Author:            Deryck Oñate
  * Author URI:        http://deryckoe.com
  * License:           GPL-2.0+
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'LOGDASH_VERSION', '0.1-alpha' );
+define( 'LOGDASH_VERSION', '1.0' );
 
 /**
  * Plugin paths
