@@ -39,6 +39,7 @@ define( 'LOGDASH_DATE_FORMAT', 'd/m/Y' );
 define( 'LOGDASH_TIME_FORMAT', 'g:i a' );
 define( 'LOGDASH_TEMPLATES', LOGDASH_DIR . '/views' );
 define( 'LOGDASH_DOMAIN', 'logdash' );
+define( 'LOGDASH_FINDIP_TOKEN', '176b7c2ae1c5455894a6fde5b9b67341' );
 
 load_plugin_textdomain( LOGDASH_DOMAIN, false, LOGDASH_LANGUAGES_DIR . '/languages' );
 

@@ -168,12 +168,13 @@ class Event {
 			return;
 		}
 
-		$response = wp_remote_get( "https://api.findip.net/$ip/?token=176b7c2ae1c5455894a6fde5b9b67341" );
+		$response = wp_remote_get( "https://api.findip.net/$ip/?token=" . LOGDASH_FINDIP_TOKEN );
 
 		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
 			$info = $response['body'];
+		} else {
+			$info = null;
 		}
-
 
 		$data   = [
 			'ip'   => $ip,
