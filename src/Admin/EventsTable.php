@@ -18,7 +18,7 @@ class EventsTable extends \WP_List_Table {
 
 	public string $plugin_text_domain = 'tally';
 	/**
-	 * @var array|object|stdClass[]|null
+	 * @var array|object|null
 	 */
 	private $table_data;
 
@@ -278,7 +278,7 @@ HTML;
 		}
 	}
 
-	private function _actions( $item, $column_name ) {
+	private function _actions( $item, $column_name ): string {
 
 		$output  = '<div class="actions">';
 		$actions = apply_filters( 'logdash_event_row_actions', [], $item, $item[ $column_name ] );
@@ -442,7 +442,7 @@ HTML;
 
 			foreach ( $filters as $filter ) {
 				if ( ! empty( $_GET[ $filter ] ) ) {
-					?> <a href="?page=<?php echo $_GET['page'] ?>" style="margin-left: 5px;">Reset filter</a> <?php
+					?> <a href="?page=<?php echo $_GET['page'] ?>" style="margin-left: 5px;"><?php _e('Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
 					break;
 				}
 			}

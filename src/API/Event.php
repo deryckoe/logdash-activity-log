@@ -187,7 +187,7 @@ class Event {
 
 	}
 
-	public static function instance() {
+	public static function instance(): ?Event {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self;
 		}
