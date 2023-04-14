@@ -1,19 +1,19 @@
 <?php
 /**
  *
- * @link              https://deryckoe.com/logdash
- * @package           Activity_Log
+ * @link              https://deryckoe.com/logdash-activity-log
+ * @package           LogDash_Activity_Log
  *
  * @wordpress-plugin
  * Plugin Name:       LogDash Activity Log
- * Plugin URI:        https://deryckoe.com/logdash
+ * Plugin URI:        https://deryckoe.com/logdash-activity-log
  * Description:       The ultimate solution for tracking activities and security issues on your WordPress site.
  * Version:           1.0
  * Author:            Deryck Oñate
  * Author URI:        http://deryckoe.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       logdash
+ * Text Domain:       logdash-activity-log
  * Domain Path:       /languages
  */
 
