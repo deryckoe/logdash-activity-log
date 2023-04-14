@@ -7,7 +7,7 @@
  * @wordpress-plugin
  * Plugin Name:       LogDash Activity Log
  * Plugin URI:        https://deryckoe.com/logdash
- * Description:       The ultimate tool for tracking and analyzing the behavior of your website's users.
+ * Description:       The ultimate solution for tracking activities and security issues on your WordPress site.
  * Version:           1.0
  * Author:            Deryck Oñate
  * Author URI:        http://deryckoe.com

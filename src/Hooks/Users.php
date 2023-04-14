@@ -164,7 +164,7 @@ class Users extends HooksBase {
 
 		$this
 			->event
-			->insert( EventTypes::LOGOUT, EventCodes::USER_LOGOUT, self::$object_type, self::$object_type, $user->ID, $current_user->ID, $current_user->roles[0] )
+			->insert( EventTypes::LOGOUT, EventCodes::USER_LOGOUT, self::$object_type, self::$object_type, $user_id, $current_user->ID, $current_user->roles[0] )
 			->attachMany( [
 				new EventMeta( 'userLogin', $user->user_login )
 			] );
@@ -197,7 +197,7 @@ class Users extends HooksBase {
 			if ( ! is_null( $attempts ) ) {
 
 				$result = $wpdb->update( $wpdb->prefix . 'logdash_activity_meta', [
-					'value' => $attempts + 1,
+					'value' => (int) $attempts + 1,
 				], [ 'event_id' => $event_id, 'name' => 'attempts' ] );
 
 				$result = $wpdb->update( $wpdb->prefix . 'logdash_activity_meta', [
@@ -214,7 +214,7 @@ class Users extends HooksBase {
 			if ( false === $user ) {
 
 				$this->event
-					->insert( EventTypes::FAILED_LOGIN, EventCodes::USER_LOGIN_FAIL, self::$object_type, self::$object_type, 0, 0, '' )
+					->insert( EventTypes::FAILED_LOGIN, EventCodes::USER_LOGIN_FAIL, self::$object_type, self::$object_type, 0, 0, null )
 					->attachMany( [
 						new EventMeta( 'userLogin', $user_login ),
 						new EventMeta( 'attempts', '1' ),
@@ -244,9 +244,9 @@ class Users extends HooksBase {
 
 	public function updated_user_meta( $meta_id, $user_id, $meta_key, $meta_value ) {
 
-		$event_user    = get_user_by( 'ID', $user_id );
-		$event_user_id = ( $event_user->ID > 0 ) ? $event_user->ID : $user_id;
-		$current_user  = wp_get_current_user();
+		$event_user   = get_user_by( 'ID', $user_id );
+		$current_user = wp_get_current_user();
+		$current_user_role = $current_user->roles[0] ?? null;
 
 		if ( $this->old_meta[ $meta_key ] === $meta_value ) {
 			return;
@@ -257,11 +257,11 @@ class Users extends HooksBase {
 		}
 
 		$this->event
-			->insert( EventTypes::MODIFIED, EventCodes::USER_UPDATED_META, self::$object_type, self::$object_type, $event_user_id, $current_user->ID, $current_user->roles[0] )
+			->insert( EventTypes::MODIFIED, EventCodes::USER_UPDATED_META, self::$object_type, self::$object_type, $user_id, $current_user->ID, $current_user_role )
 			->attachMany( [
 				new EventMeta( 'fieldName', $meta_key ),
-				new EventMeta( 'oldValue', $this->old_meta[ $meta_key ] ),
-				new EventMeta( 'newValue', $meta_value ),
+				new EventMeta( 'oldValue', (string) $this->old_meta[ $meta_key ] ),
+				new EventMeta( 'newValue', (string) $meta_value ),
 				new EventMeta( 'userLogin', $event_user->user_login ),
 				new EventMeta( 'firstName', $event_user->first_name ),
 				new EventMeta( 'lastName', $event_user->last_name ),

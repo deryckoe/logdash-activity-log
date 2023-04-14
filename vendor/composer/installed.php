@@ -3,7 +3,7 @@
         'name' => 'deryck/logdash',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '6dc15a509fb8ff8bb3f9ef8b7365c522edb45d27',
+        'reference' => 'd80679f6ccdfcfa859ca34252362a905bf8cc6c0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'deryck/logdash' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '6dc15a509fb8ff8bb3f9ef8b7365c522edb45d27',
+            'reference' => 'd80679f6ccdfcfa859ca34252362a905bf8cc6c0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
