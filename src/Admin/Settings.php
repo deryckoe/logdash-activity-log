@@ -141,7 +141,7 @@ class Settings {
 		$input_class       = isset( $args['input_class'] ) ? esc_attr( $args['input_class'] ) : 'regular-text';
 		$input_name        = isset( $args['input_name'] ) ? esc_attr( $args['input_name'] ) : '';
 		$label_suffix      = isset( $args['label_suffix'] ) ? esc_attr( $args['label_suffix'] ) : '';
-		$label_description = isset( $args['label_description'] ) ? esc_attr( $args['label_description'] ) : '';
+		$label_description = $args['label_description'] ?? '';
 
 		$input_value = $options[ $input_name ] ?? '';
 		$input_field = '';

@@ -7,15 +7,10 @@ use LogDash\Admin\Settings;
 class RemoveExpiredLog {
 	private static ?RemoveExpiredLog $instance = null;
 	private $wpdb;
-	private array $tables;
 
 	public function __construct() {
 		global $wpdb;
 		$this->wpdb   = $wpdb;
-		$this->tables = [
-			'logdash_activity_log',
-			'logdash_activity_meta',
-		];
 	}
 
 	public static function instance(): ?RemoveExpiredLog {
