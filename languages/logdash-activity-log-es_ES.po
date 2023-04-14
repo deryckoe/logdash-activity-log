@@ -1,0 +1,1067 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LogDash Activity Log\n"
+"POT-Creation-Date: 2023-04-14 13:02-0400\n"
+"PO-Revision-Date: 2023-04-14 13:06-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: logdash-activity-log.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+
+#: src/Actions/ResetLog.php:43
+msgid "There is an issue with reset request."
+msgstr "Hay un problema con la solicitud de restablecimiento."
+
+#: src/Actions/ResetLog.php:51
+msgid "You are not authorized to perform this action."
+msgstr "No estás autorizado para realizar esta acción."
+
+#: src/Actions/ResetLog.php:62
+#, php-format
+msgid "Reset failed: (%s)"
+msgstr "Reinicio fallido: (%s)"
+
+#: src/Actions/ResetLog.php:70
+msgid "All events were deleted."
+msgstr "Se han eliminado todos los eventos."
+
+#: src/Admin/EventsPage.php:32
+msgid "LogDash Activity Log Viewer"
+msgstr "Visor de registros de actividad LogDash"
+
+#: src/Admin/EventsPage.php:33
+msgid "LogDash"
+msgstr "LogDash"
+
+#: src/Admin/EventsPage.php:45
+msgid "Activity Log"
+msgstr "Eventos"
+
+#: src/Admin/EventsPage.php:50
+msgid "Users Per Page"
+msgstr "Usuarios por página"
+
+#: src/Admin/EventsPage.php:65 views/admin/events.template.php:12
+msgid "Search"
+msgstr "Buscar"
+
+#: src/Admin/EventsTable.php:30
+msgid "Code"
+msgstr "Código"
+
+#: src/Admin/EventsTable.php:31
+msgid "Date"
+msgstr "Fecha"
+
+#: src/Admin/EventsTable.php:32 src/Hooks/Users.php:310 src/Hooks/Users.php:361
+msgid "User"
+msgstr "Usuario"
+
+#: src/Admin/EventsTable.php:33
+msgid "IP"
+msgstr "IP"
+
+#: src/Admin/EventsTable.php:34
+msgid "Context"
+msgstr "Contexto"
+
+#: src/Admin/EventsTable.php:35
+msgid "Action"
+msgstr "Acción"
+
+#: src/Admin/EventsTable.php:36
+msgid "Meta "
+msgstr "Meta "
+
+#: src/Admin/EventsTable.php:42
+msgid "No events have been found that meet your search criteria."
+msgstr ""
+"No se han encontrado eventos que se ajusten a sus criterios de búsqueda."
+
+#: src/Admin/EventsTable.php:44
+msgid "No events have been logged yet."
+msgstr "Aún no se ha registrado ningún evento."
+
+#: src/Admin/EventsTable.php:303
+#, php-format
+msgid "Select %s"
+msgstr "Seleccionar %s"
+
+#: src/Admin/EventsTable.php:364
+msgid "All Roles"
+msgstr "Todas las Funciones"
+
+#: src/Admin/EventsTable.php:445
+msgid "Reset filter"
+msgstr "Restablecer filtro"
+
+#: src/Admin/Settings.php:30
+msgid "LogDash Settings"
+msgstr "Configuración de LogDash"
+
+#: src/Admin/Settings.php:31
+msgid "Settings"
+msgstr "Ajustes"
+
+#: src/Admin/Settings.php:68
+msgid "Settings Saved"
+msgstr "Configuración Guardada"
+
+#: src/Admin/Settings.php:74
+msgid "Basic Settings"
+msgstr "Ajustes Básicos"
+
+#: src/Admin/Settings.php:88
+#, php-format
+msgid "%s records were deleted on %s"
+msgstr "se borraron %s registros en %s"
+
+#: src/Admin/Settings.php:95
+msgid "Store logs for"
+msgstr "Almacenar registros para"
+
+#: src/Admin/Settings.php:105
+msgid "days"
+msgstr "días"
+
+#: src/Admin/Settings.php:106
+msgid ""
+"Specify the length of time you want to retain the activity log. If left "
+"blank, the activity log will be kept indefinitely, although this is not "
+"recommended."
+msgstr ""
+"Especifique el tiempo que desea conservar el registro de actividad. Si se "
+"deja en blanco, el registro de actividad se conservará indefinidamente, "
+"aunque no es recomendable."
+
+#: src/Admin/Settings.php:117
+msgid "Delete Log Activities"
+msgstr "Borrar actividades de registro"
+
+#: src/Admin/Settings.php:126
+msgid ""
+"Warning: Clicking this will delete all events from the database. Tables and "
+"structure will be maintained."
+msgstr ""
+"Advertencia: Al hacer clic se borrarán todos los eventos de la base de "
+"datos. Se mantendrán las tablas y la estructura."
+
+#: src/Admin/Settings.php:127
+msgid "All data will be deleted. Are you sure do you want to continue?"
+msgstr "Se borrarán todos los datos. ¿Está seguro de que desea continuar?"
+
+#: src/EventCodes.php:115
+msgid "Default event."
+msgstr "Evento por defecto."
+
+#: src/EventCodes.php:117
+#, php-format
+msgid "Updated WordPress from %s to %s"
+msgstr "Actualizado WordPress de %s a %s"
+
+#: src/EventCodes.php:118
+#, php-format
+msgid "Downgraded WordPress from %s to %s"
+msgstr "WordPress ha pasado de %s a %s"
+
+#: src/EventCodes.php:119
+#, php-format
+msgid "Reinstalled WordPress %s"
+msgstr "Reinstalado WordPress %s"
+
+#: src/EventCodes.php:121
+msgid "Plugin uploaded"
+msgstr "Plugin cargado"
+
+#: src/EventCodes.php:122
+msgid "Plugin downloaded"
+msgstr "Plugin descargado"
+
+#: src/EventCodes.php:123
+#, php-format
+msgid "Installed %s %s plugin at %s"
+msgstr "Plugin instalado %s %s en %s"
+
+#: src/EventCodes.php:124
+#, php-format
+msgid "Uninstalled %s %s plugin at %s"
+msgstr "Desinstalado %s %s plugin en %s"
+
+#: src/EventCodes.php:125
+#, php-format
+msgid "Activated the plugin %s %s"
+msgstr "Activado el plugin %s %s"
+
+#: src/EventCodes.php:126
+#, php-format
+msgid "Deactivated de plugin %s %s deactivated"
+msgstr "Desactivado de plugin %s %s desactivado"
+
+#: src/EventCodes.php:127
+#, php-format
+msgid "Upgraded plugin %s to version %s"
+msgstr "Actualizado plugin %s a la versión %s"
+
+#: src/EventCodes.php:129
+#, php-format
+msgid "Uploaded theme %s %s"
+msgstr "Tema subido %s %s"
+
+#: src/EventCodes.php:130
+#, php-format
+msgid "Downloaded theme %s %s"
+msgstr "Tema descargado %s %s"
+
+#: src/EventCodes.php:131
+#, php-format
+msgid "Installed theme %s %s"
+msgstr "Tema instalado %s %s"
+
+#: src/EventCodes.php:132
+#, php-format
+msgid "Uninstalled theme %s %s"
+msgstr "Tema desinstalado %s %s"
+
+#: src/EventCodes.php:133
+#, php-format
+msgid "Activated theme %s %s"
+msgstr "Tema activado %s %s"
+
+#: src/EventCodes.php:134
+#, php-format
+msgid "Deactivated theme %s %s"
+msgstr "Tema desactivado %s %s"
+
+#: src/EventCodes.php:135
+#, php-format
+msgid "Upgraded theme %s to version %s"
+msgstr "Actualizado el tema %s a la versión %s"
+
+#: src/EventCodes.php:137
+#, php-format
+msgid "User %s logged in."
+msgstr "Usuario %s conectado."
+
+#: src/EventCodes.php:138
+#, php-format
+msgid "User %s logged out."
+msgstr "Usuario %s desconectado."
+
+#: src/EventCodes.php:139
+#, php-format
+msgid "Failed login attempt for %s."
+msgstr "Intento de inicio de sesión fallido para %s."
+
+#: src/EventCodes.php:140
+#, php-format
+msgid "All %s user sessions were closed."
+msgstr "Se han cerrado todas las sesiones de usuario %s."
+
+#: src/EventCodes.php:141
+#, php-format
+msgid "User %s created."
+msgstr "Usuario %s creado."
+
+#: src/EventCodes.php:142
+#, php-format
+msgid "User %s deleted."
+msgstr "Usuario %s eliminado."
+
+#: src/EventCodes.php:143
+#, php-format
+msgid "User %s profile updated."
+msgstr "Perfil del usuario %s actualizado."
+
+#: src/EventCodes.php:144
+#, php-format
+msgid "Meta field %s updated from %s to %s for %s."
+msgstr "Meta campo %s actualizado de %s a %s para %s."
+
+#: src/EventCodes.php:145
+#, php-format
+msgid "Email updated from %s to %s for user %s"
+msgstr "Email actualizado de %s a %s para el usuario %s"
+
+#: src/EventCodes.php:146
+msgid "User login updated."
+msgstr "Inicio de sesión de usuario actualizado."
+
+#: src/EventCodes.php:147
+#, php-format
+msgid "Password updated for %s."
+msgstr "Contraseña actualizada para %s."
+
+#: src/EventCodes.php:148
+#, php-format
+msgid "User %s nice name updated."
+msgstr "Usuario %s bonito nombre actualizado."
+
+#: src/EventCodes.php:149
+#, php-format
+msgid "User url updated from %s to %s for %s."
+msgstr "Url de usuario actualizada de %s a %s para %s."
+
+#: src/EventCodes.php:150
+#, php-format
+msgid "User %s status updated."
+msgstr "Estado del usuario %s actualizado."
+
+#: src/EventCodes.php:151
+#, php-format
+msgid "Changed display name from %s to %s for %s."
+msgstr "Cambiado el nombre de pantalla de %s a %s para %s."
+
+#: src/EventCodes.php:152
+#, php-format
+msgid "User %s role updated."
+msgstr "Rol del usuario %s actualizado."
+
+#: src/EventCodes.php:154
+#, php-format
+msgid "Setting %s created."
+msgstr "Configuración %s creada."
+
+#: src/EventCodes.php:155
+#, php-format
+msgid "Setting %s updated from %s to %s."
+msgstr "Ajuste %s actualizado de %s a %s."
+
+#: src/EventCodes.php:156
+#, php-format
+msgid "Setting %s deleted."
+msgstr "Ajuste %s borrado."
+
+#: src/EventCodes.php:158
+#, php-format
+msgid "Uploaded file %s to %s."
+msgstr "Archivo subido %s a %s."
+
+#: src/EventCodes.php:159
+#, php-format
+msgid "Deleted file %s from %s."
+msgstr "Archivo %s borrado de %s."
+
+#: src/EventCodes.php:160
+msgid "Attachment updated."
+msgstr "Adjunto actualizado."
+
+#: src/EventCodes.php:161
+#, php-format
+msgid "Modified the file %s with plugin editor."
+msgstr "Modificado el archivo %s con el editor de plugins."
+
+#: src/EventCodes.php:162
+#, php-format
+msgid "Modified the file %s with theme editor."
+msgstr "Modificado el archivo %s con el editor de temas."
+
+#: src/EventCodes.php:164
+#, php-format
+msgid "Opened %s with title %s in the editor."
+msgstr "Abierto %s con título %s en el editor."
+
+#: src/EventCodes.php:165
+#, php-format
+msgid "Created post %s."
+msgstr "Puesto creado %s."
+
+#: src/EventCodes.php:166
+msgid "Post updated."
+msgstr "Contenido actualizado."
+
+#: src/EventCodes.php:167
+#, php-format
+msgid "Updated the status of %s post to %s."
+msgstr "Actualizado el estado del puesto %s a %s."
+
+#: src/EventCodes.php:168
+#, php-format
+msgid "Updated title of post %s from %s to %s."
+msgstr "Actualizado el título del post %s de %s a %s."
+
+#: src/EventCodes.php:169
+#, php-format
+msgid "Updated content for post %s."
+msgstr "Contenido actualizado para el post %s."
+
+#: src/EventCodes.php:170
+#, php-format
+msgid "Categories updated from %s to %s in post %s."
+msgstr "Categorías actualizadas de %s a %s en el post %s."
+
+#: src/EventCodes.php:171
+#, php-format
+msgid "Tags updated from %s to %s in post %s."
+msgstr "Etiquetas actualizadas de %s a %s en el post %s."
+
+#: src/EventCodes.php:172
+#, php-format
+msgid "Taxonomies updated from %s to %s in post %s."
+msgstr "Taxonomías actualizadas de %s a %s en el post %s."
+
+#: src/EventCodes.php:173
+#, php-format
+msgid "Author updated from %s to %s in post %s"
+msgstr "Autor actualizado de %s a %s en el post %s"
+
+#: src/EventCodes.php:174
+#, php-format
+msgid "Updated publish date from %s to %s for post %s"
+msgstr "Actualizada la fecha de publicación de %s a %s para el post %s"
+
+#: src/EventCodes.php:175
+#, php-format
+msgid "URL updated from %s to %s in post %s"
+msgstr "URL actualizada de %s a %s en el post %s"
+
+#: src/EventCodes.php:176
+#, php-format
+msgid "Excerpt updated from %s to %s in post %s"
+msgstr "Extracto actualizado de %s a %s en el post %s"
+
+#: src/EventCodes.php:177
+#, php-format
+msgid "Parent assigned to %s for post %s"
+msgstr "Padre asignado a %s para el puesto %s"
+
+#: src/EventCodes.php:178
+#, php-format
+msgid "Updated menu order from %s to %s in Post %s"
+msgstr "Actualizado el orden del menú de %s a %s en Post %s"
+
+#: src/EventCodes.php:179
+#, php-format
+msgid "Updated featured thumbnail to %s for %s."
+msgstr "Actualizada la miniatura destacada a %s para %s."
+
+#: src/EventCodes.php:180
+#, php-format
+msgid "Added featured thumbnail %s for post %s."
+msgstr "Añadida miniatura destacada %s para el post %s."
+
+#: src/EventCodes.php:181
+#, php-format
+msgid "Removed featured post thumbnail %s for post %s."
+msgstr "Eliminada miniatura de entrada destacada %s para entrada %s."
+
+#: src/EventCodes.php:182
+#, php-format
+msgid "Permanently Deleted post %s."
+msgstr "Puesto borrado permanentemente %s."
+
+#: src/EventCodes.php:183
+#, php-format
+msgid "Moved post %s to trash."
+msgstr "Movido el post %s a la papelera."
+
+#: src/EventCodes.php:184
+#, php-format
+msgid "Restored post %s from trash."
+msgstr "Puesto %s restaurado de la papelera."
+
+#: src/EventCodes.php:185
+#, php-format
+msgid "Published post %s."
+msgstr "Puesto publicado %s."
+
+#: src/EventCodes.php:186
+#, php-format
+msgid "Post %s set as scheduled for %s."
+msgstr "Puesto %s fijado como programado para %s."
+
+#: src/EventCodes.php:187
+#, php-format
+msgid "Post %s template set as %s."
+msgstr "Plantilla de puesto %s establecida como %s."
+
+#: src/EventCodes.php:188
+#, php-format
+msgid "Modified post %s visibility from %s to %s."
+msgstr "Modificada la visibilidad del puesto %s de %s a %s."
+
+#: src/EventCodes.php:189
+#, php-format
+msgid "Set the post %s as sticky."
+msgstr "Establece el post %s como pegajoso."
+
+#: src/EventCodes.php:190
+#, php-format
+msgid "Removed the post %s from sticky"
+msgstr "Eliminado el post %s de sticky"
+
+#: src/EventCodes.php:191
+#, php-format
+msgid "Enabled comments for post %s."
+msgstr "Comentarios habilitados para el post %s."
+
+#: src/EventCodes.php:192
+#, php-format
+msgid "Disabled comments for post %s."
+msgstr "Comentarios deshabilitados para el post %s."
+
+#: src/EventCodes.php:193
+#, php-format
+msgid "Enabled pings and trackbacks for post %s."
+msgstr "Habilitados pings y trackbacks para el post %s."
+
+#: src/EventCodes.php:194
+#, php-format
+msgid "Disabled pings and trackbacks for post %s."
+msgstr "Pings y trackbacks desactivados para el post %s."
+
+#: src/EventCodes.php:195
+#, php-format
+msgid "Post %s has taken over."
+msgstr "El puesto %s ha tomado el relevo."
+
+#: src/EventCodes.php:196
+#, php-format
+msgid "Created meta field %s with value %s in %s."
+msgstr "Creado meta campo %s con valor %s en %s."
+
+#: src/EventCodes.php:197
+#, php-format
+msgid "Updated meta field %s from %s to %s in %s."
+msgstr "Actualizado el meta campo %s de %s a %s en %s."
+
+#: src/EventCodes.php:198
+msgid "Post meta field has been deleted."
+msgstr "Se ha eliminado el campo Post meta."
+
+#: src/EventCodes.php:200
+#, php-format
+msgid "Created category %s."
+msgstr "Categoría creada %s."
+
+#: src/EventCodes.php:201
+#, php-format
+msgid "Deleted category %s."
+msgstr "Categoría eliminada %s."
+
+#: src/EventCodes.php:202
+#, php-format
+msgid "Updated %s from %s (%s) to %s (%s)."
+msgstr "Actualizado %s de %s (%s) a %s (%s)."
+
+#: src/EventCodes.php:204
+#, php-format
+msgid "Created term %s in %s."
+msgstr "Creado término %s en %s."
+
+#: src/EventCodes.php:205
+#, php-format
+msgid "Delete term %s in %s."
+msgstr "Borrar término %s en %s."
+
+#: src/EventCodes.php:206
+#, php-format
+msgid "Updated tag %s from %s (%s) to %s (%s)."
+msgstr "Actualizada la etiqueta %s de %s (%s) a %s (%s)."
+
+#: src/EventCodes.php:208
+#, php-format
+msgid "Created term %s in taxonomy %s."
+msgstr "Creado término %s en taxonomía %s."
+
+#: src/EventCodes.php:209
+#, php-format
+msgid "Deleted term %s in taxonomy %s."
+msgstr "Término %s suprimido en la taxonomía %s."
+
+#: src/EventCodes.php:210
+#, php-format
+msgid "Updated taxonomy %s from %s (%s) to %s (%s)."
+msgstr "Actualizada la taxonomía %s de %s (%s) a %s (%s)."
+
+#: src/Hooks/Core.php:32
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: src/Hooks/Core.php:61
+msgid "About"
+msgstr "Acerca de"
+
+#: src/Hooks/Core.php:62
+msgid "Release notes"
+msgstr "Notas de la versión"
+
+#: src/Hooks/Core.php:71 src/Hooks/Plugins.php:177 src/Hooks/Themes.php:157
+msgid "Version"
+msgstr "Versión"
+
+#: src/Hooks/Core.php:81
+msgid "Old version"
+msgstr "Versión antigua"
+
+#: src/Hooks/Core.php:82
+msgid "New version"
+msgstr "Nueva Version"
+
+#: src/Hooks/Core.php:87 src/Hooks/Files.php:190 src/Hooks/Meta.php:191
+#: src/Hooks/Plugins.php:211 src/Hooks/Posts.php:685 src/Hooks/Settings.php:249
+#: src/Hooks/Taxonomies.php:203 src/Hooks/Themes.php:184
+#: src/Hooks/Users.php:413
+msgid "User Agent"
+msgstr "Agente de usuario"
+
+#: src/Hooks/Files.php:143 src/Hooks/Posts.php:408
+msgid "View"
+msgstr "Ver"
+
+#: src/Hooks/Files.php:144 src/Hooks/Posts.php:403
+msgid "Edit"
+msgstr "Editar"
+
+#: src/Hooks/Files.php:149
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#: src/Hooks/Files.php:150
+msgid "File path"
+msgstr "Ruta del archivo"
+
+#: src/Hooks/Files.php:162
+msgid "Plugin name"
+msgstr "Nombre del plugin"
+
+#: src/Hooks/Files.php:163
+msgid "Plugin file"
+msgstr "Archivo de plugin"
+
+#: src/Hooks/Files.php:164
+msgid "Plugin path"
+msgstr "Ruta del plugin"
+
+#: src/Hooks/Files.php:176
+msgid "Theme name"
+msgstr "Nombre del tema"
+
+#: src/Hooks/Files.php:177
+msgid "Theme file"
+msgstr "Archivo de theme"
+
+#: src/Hooks/Files.php:178
+msgid "Theme path"
+msgstr "Ruta temática"
+
+#: src/Hooks/Meta.php:142 src/Hooks/Taxonomies.php:158
+msgid "Edit "
+msgstr "Editar "
+
+#: src/Hooks/Meta.php:149 src/Hooks/Posts.php:434 src/Hooks/Posts.php:444
+#: src/Hooks/Posts.php:460 src/Hooks/Posts.php:475 src/Hooks/Posts.php:495
+#: src/Hooks/Posts.php:506 src/Hooks/Posts.php:518 src/Hooks/Posts.php:532
+#: src/Hooks/Posts.php:546 src/Hooks/Posts.php:560 src/Hooks/Posts.php:574
+#: src/Hooks/Posts.php:596 src/Hooks/Posts.php:610 src/Hooks/Posts.php:623
+#: src/Hooks/Posts.php:635 src/Hooks/Posts.php:655 src/Hooks/Posts.php:669
+msgid "Post title"
+msgstr "Título del anuncio"
+
+#: src/Hooks/Meta.php:150 src/Hooks/Posts.php:436 src/Hooks/Posts.php:446
+#: src/Hooks/Posts.php:462 src/Hooks/Posts.php:477 src/Hooks/Posts.php:497
+#: src/Hooks/Posts.php:508 src/Hooks/Posts.php:520 src/Hooks/Posts.php:521
+#: src/Hooks/Posts.php:522 src/Hooks/Posts.php:534 src/Hooks/Posts.php:535
+#: src/Hooks/Posts.php:536 src/Hooks/Posts.php:548 src/Hooks/Posts.php:562
+#: src/Hooks/Posts.php:576 src/Hooks/Posts.php:598 src/Hooks/Posts.php:612
+#: src/Hooks/Posts.php:625 src/Hooks/Posts.php:637 src/Hooks/Posts.php:657
+#: src/Hooks/Posts.php:671
+msgid "Post type"
+msgstr "Tipo de entrada"
+
+#: src/Hooks/Meta.php:151 src/Hooks/Posts.php:435 src/Hooks/Posts.php:445
+#: src/Hooks/Posts.php:461 src/Hooks/Posts.php:476 src/Hooks/Posts.php:496
+#: src/Hooks/Posts.php:507 src/Hooks/Posts.php:519 src/Hooks/Posts.php:533
+#: src/Hooks/Posts.php:547 src/Hooks/Posts.php:561 src/Hooks/Posts.php:575
+#: src/Hooks/Posts.php:597 src/Hooks/Posts.php:611 src/Hooks/Posts.php:624
+#: src/Hooks/Posts.php:636 src/Hooks/Posts.php:656 src/Hooks/Posts.php:670
+msgid "Post status"
+msgstr "Estado del contenido"
+
+#: src/Hooks/Meta.php:163 src/Hooks/Meta.php:178
+msgid "Meta key"
+msgstr "Meta key"
+
+#: src/Hooks/Meta.php:164 src/Hooks/Meta.php:179 src/Hooks/Settings.php:222
+#: src/Hooks/Settings.php:236 src/Hooks/Users.php:385
+msgid "Old value"
+msgstr "Valor antiguo"
+
+#: src/Hooks/Meta.php:165 src/Hooks/Settings.php:211 src/Hooks/Settings.php:237
+#: src/Hooks/Users.php:314
+msgid "New value"
+msgstr "Nuevo valor"
+
+#: src/Hooks/Plugins.php:171 src/Hooks/Themes.php:152 src/Hooks/Themes.php:202
+msgid "Details"
+msgstr "Detalles"
+
+#: src/Hooks/Plugins.php:172
+msgid "Changelog"
+msgstr "Registro de cambios"
+
+#: src/Hooks/Plugins.php:176 src/Hooks/Themes.php:156
+msgid "Name"
+msgstr "Nombre"
+
+#: src/Hooks/Plugins.php:178 src/Hooks/Themes.php:155
+msgid "Path"
+msgstr "Ruta"
+
+#: src/Hooks/Posts.php:277
+msgid "Unassigned"
+msgstr "Sin asignar"
+
+#: src/Hooks/Posts.php:417
+msgid "Differences"
+msgstr "Ver las diferencias"
+
+#: src/Hooks/Posts.php:447
+msgid "Old user"
+msgstr "Antiguo usuario"
+
+#: src/Hooks/Posts.php:448
+msgid "New user"
+msgstr "Nuevo usuario"
+
+#: src/Hooks/Posts.php:463 src/Hooks/Taxonomies.php:194
+msgid "Term name"
+msgstr "Nombre del témino"
+
+#: src/Hooks/Posts.php:464
+msgid "Old values"
+msgstr "Valores antiguos"
+
+#: src/Hooks/Posts.php:465
+msgid "New values"
+msgstr "Nuevos valores"
+
+#: src/Hooks/Posts.php:478
+msgid "Post date"
+msgstr "Fecha de la entrada"
+
+#: src/Hooks/Posts.php:479
+msgid "Post url"
+msgstr "URL de la entrada"
+
+#: src/Hooks/Posts.php:549
+msgid "Old excerpt"
+msgstr "Extracto antiguo"
+
+#: src/Hooks/Posts.php:550
+msgid "New excerpt"
+msgstr "Nuevo extracto"
+
+#: src/Hooks/Posts.php:563 src/Hooks/Taxonomies.php:178
+msgid "Old slug"
+msgstr "Antiguo slug"
+
+#: src/Hooks/Posts.php:564 src/Hooks/Taxonomies.php:179
+msgid "New slug"
+msgstr "Nueva babosa"
+
+#: src/Hooks/Posts.php:577
+msgid "Old ID"
+msgstr "Identificación antigua"
+
+#: src/Hooks/Posts.php:578
+msgid "New ID"
+msgstr "Nueva ID"
+
+#: src/Hooks/Posts.php:579
+msgid "Old Author"
+msgstr "Autor antiguo"
+
+#: src/Hooks/Posts.php:580
+msgid "New Author"
+msgstr "Nuevo autor"
+
+#: src/Hooks/Posts.php:585
+msgid "Edit author profile"
+msgstr "Editar el perfil del autor"
+
+#: src/Hooks/Posts.php:599
+msgid "Old Thumbnail"
+msgstr "Miniatura antigua"
+
+#: src/Hooks/Posts.php:600
+msgid "New Thumbnail"
+msgstr "Nueva miniatura"
+
+#: src/Hooks/Posts.php:613
+msgid "Old Date"
+msgstr "Fecha anterior"
+
+#: src/Hooks/Posts.php:614
+msgid "New Date"
+msgstr "Nueva fecha"
+
+#: src/Hooks/Posts.php:626
+msgid "Publishing Date"
+msgstr "Fecha de publicación"
+
+#: src/Hooks/Posts.php:638
+msgid "Old Parent Link"
+msgstr "Antiguo enlace parental"
+
+#: src/Hooks/Posts.php:639
+msgid "New Parent Link"
+msgstr "Nuevo enlace para padres"
+
+#: src/Hooks/Posts.php:640
+msgid "Old Parent Title"
+msgstr "Título anterior"
+
+#: src/Hooks/Posts.php:641
+msgid "New Parent Title"
+msgstr "Nuevo título paterno"
+
+#: src/Hooks/Posts.php:646
+msgid "Edit parent"
+msgstr "Editar padre"
+
+#: src/Hooks/Posts.php:658
+msgid "Old Template"
+msgstr "Plantilla antigua"
+
+#: src/Hooks/Posts.php:659
+msgid "New Template"
+msgstr "Nueva Plantilla"
+
+#: src/Hooks/Posts.php:672
+msgid "Old Menu order"
+msgstr "Antiguo orden del menú"
+
+#: src/Hooks/Posts.php:673
+msgid "New Menu order"
+msgstr "Nueva orden de menú"
+
+#: src/Hooks/Posts.php:894 src/Hooks/Posts.php:902
+msgid "Password Protected"
+msgstr "Contraseña Protegida"
+
+#: src/Hooks/Posts.php:896 src/Hooks/Posts.php:904
+msgid "Private"
+msgstr "Privado"
+
+#: src/Hooks/Posts.php:898 src/Hooks/Posts.php:906
+msgid "Public"
+msgstr "Público"
+
+#: src/Hooks/Settings.php:38
+msgid "WordPress Address (URL)"
+msgstr "Dirección de WordPress (URL)"
+
+#: src/Hooks/Settings.php:39
+msgid "Site Address (URL)"
+msgstr "Dirección del sitio (URL)"
+
+#: src/Hooks/Settings.php:40
+msgid "Site Title"
+msgstr "Título del sitio"
+
+#: src/Hooks/Settings.php:41
+msgid "Tagline"
+msgstr "Lema"
+
+#: src/Hooks/Settings.php:42
+msgid "Anyone can register"
+msgstr "Cualquiera puede registrarse"
+
+#: src/Hooks/Settings.php:43
+msgid "Administration Email Address"
+msgstr "Dirección de correo electrónico de administración"
+
+#: src/Hooks/Settings.php:44
+msgid "New User Default Role"
+msgstr "Nueva función predeterminada de usuario"
+
+#: src/Hooks/Settings.php:45
+msgid "Site Language"
+msgstr "Idioma del sitio"
+
+#: src/Hooks/Settings.php:46
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#: src/Hooks/Settings.php:47
+msgid "Date Format"
+msgstr "Formato de fecha"
+
+#: src/Hooks/Settings.php:48
+msgid "Time Format"
+msgstr "Formato de hora"
+
+#: src/Hooks/Settings.php:49
+msgid "Week Starts On"
+msgstr "La semana comienza en"
+
+#: src/Hooks/Settings.php:50
+msgid "Your homepage displays"
+msgstr "La página de inicio muestra"
+
+#: src/Hooks/Settings.php:51
+msgid "Homepage:"
+msgstr "Página de inicio:"
+
+#: src/Hooks/Settings.php:52
+msgid "Posts page:"
+msgstr "Página:"
+
+#: src/Hooks/Settings.php:53
+msgid "Blog pages show at most"
+msgstr "Blog sayfaları en fazla göstermek"
+
+#: src/Hooks/Settings.php:54
+msgid "Syndication feeds show the most recent"
+msgstr "Alimentaciones Syndication muestran el más reciente"
+
+#: src/Hooks/Settings.php:55
+msgid "For each post in a feed, include"
+msgstr "Para cada mensaje en un feed, incluya"
+
+#: src/Hooks/Settings.php:56
+msgid "Search engine visibility"
+msgstr "Visibilidad Motor de Búsqueda"
+
+#: src/Hooks/Settings.php:57
+msgid "Permalink structure"
+msgstr "Estructura de Permalink"
+
+#: src/Hooks/Settings.php:235
+msgid "Field name"
+msgstr "Nombre del campo"
+
+#: src/Hooks/Taxonomies.php:175 src/Hooks/Taxonomies.php:193
+msgid "Term type"
+msgstr "Tipo de plazo"
+
+#: src/Hooks/Taxonomies.php:176
+msgid "Old name"
+msgstr "Nombre antiguo"
+
+#: src/Hooks/Taxonomies.php:177
+msgid "New name"
+msgstr "Nuevo nombre"
+
+#: src/Hooks/Taxonomies.php:195
+msgid "Term slug"
+msgstr "Term slug"
+
+#: src/Hooks/Users.php:288
+msgid "View profile"
+msgstr "Ver perfil"
+
+#: src/Hooks/Users.php:288
+msgid "Edit user"
+msgstr "Editar usuario"
+
+#: src/Hooks/Users.php:311 src/Hooks/Users.php:327 src/Hooks/Users.php:399
+msgid "Roles"
+msgstr "Roles"
+
+#: src/Hooks/Users.php:312
+msgid "Updated field"
+msgstr "Campo actualizado"
+
+#: src/Hooks/Users.php:313
+msgid "Previous value"
+msgstr "Valor anterior"
+
+#: src/Hooks/Users.php:326 src/Hooks/Users.php:398
+msgid "User login"
+msgstr "Login del usuario"
+
+#: src/Hooks/Users.php:328
+msgid "First name"
+msgstr "Nombre"
+
+#: src/Hooks/Users.php:329
+msgid "Last name"
+msgstr "Apellidos"
+
+#: src/Hooks/Users.php:333
+msgid "Reassign posts"
+msgstr "Reasignar puestos"
+
+#: src/Hooks/Users.php:362
+msgid "Attempts"
+msgstr "Intentos"
+
+#: src/Hooks/Users.php:363
+msgid "Last attempt"
+msgstr "Último intento"
+
+#: src/Hooks/Users.php:364
+msgid "Last Error"
+msgstr "Ultimo error"
+
+#: src/Hooks/Users.php:384
+msgid "User field"
+msgstr "Campo de usuario"
+
+#: src/Hooks/Users.php:386
+msgid "New new"
+msgstr "Nuevo Nuevo"
+
+#: src/Hooks/Users.php:400
+msgid "First Name"
+msgstr "Nombre"
+
+#: src/Hooks/Users.php:401
+msgid "Last Name"
+msgstr "Apellido"
+
+#: src/Template/Meta/After.php:11 src/Template/Meta/Before.php:10
+msgid "undefined"
+msgstr "indefinido"
+
+#: src/Template/Meta/View.php:22
+msgid "More"
+msgstr "Más"
+
+#: src/Template/Meta/View.php:22
+msgid "Less"
+msgstr "Menos"
+
+#: views/admin/events.template.php:6
+msgid "LogDash Activity"
+msgstr "Actividad de LogDash"
+
+#. Plugin Name of the plugin/theme
+msgid "LogDash Activity Log"
+msgstr "Registro de actividad LogDash"
+
+#. Plugin URI of the plugin/theme
+msgid "https://deryckoe.com/logdash-activity-log"
+msgstr "https://deryckoe.com/logdash-activity-log"
+
+#. Description of the plugin/theme
+msgid ""
+"The ultimate solution for tracking activities and security issues on your "
+"WordPress site."
+msgstr ""
+"La solución definitiva para realizar un seguimiento de las actividades y los "
+"problemas de seguridad de su sitio de WordPress."
+
+#. Author of the plugin/theme
+msgid "Deryck Oñate"
+msgstr "Deryck Oñate"
+
+#. Author URI of the plugin/theme
+msgid "http://deryckoe.com"
+msgstr "https://deryckoe.com"
