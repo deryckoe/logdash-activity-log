@@ -2,19 +2,20 @@
 
 namespace LogDash;
 
-use LogDash\Admin\Settings;
-use LogDash\API\Activation;
-use LogDash\Hooks\Meta;
-use LogDash\Hooks\Taxonomies;
-use LogDash\Hooks\Core;
-use LogDash\Hooks\Plugins;
-use LogDash\Hooks\Posts;
-use LogDash\Hooks\Themes;
-use LogDash\Hooks\Users;
-use LogDash\Hooks\Files;
 use LogDash\Actions\RemoveExpiredLog;
 use LogDash\Actions\ResetLog;
 use LogDash\Admin\EventsPage;
+use LogDash\Admin\Settings;
+use LogDash\API\Activation;
+use LogDash\API\RestEndpoints;
+use LogDash\Hooks\Core;
+use LogDash\Hooks\Files;
+use LogDash\Hooks\Meta;
+use LogDash\Hooks\Plugins;
+use LogDash\Hooks\Posts;
+use LogDash\Hooks\Taxonomies;
+use LogDash\Hooks\Themes;
+use LogDash\Hooks\Users;
 
 class ActivityLog {
 

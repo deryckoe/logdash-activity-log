@@ -56,7 +56,7 @@ class Event {
 		global $wpdb;
 
 		$table     = $wpdb->prefix . 'logdash_activity_meta';
-		$query_ids = false;
+		$query_ids = [];
 
 		foreach ( $events as $event ) {
 			if ( ! $event instanceof EventMeta ) {

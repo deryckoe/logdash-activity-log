@@ -1,6 +1,6 @@
 <?php
 
-namespace LogDash;
+namespace LogDash\API;
 
 class RestEndpoints {
 
