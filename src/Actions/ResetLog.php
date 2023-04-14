@@ -2,8 +2,6 @@
 
 namespace LogDash\Actions;
 
-use LogDash\Admin\Settings;
-
 class ResetLog {
 
 	private static ?ResetLog $instance = null;
@@ -39,6 +37,13 @@ class ResetLog {
 
 	public function logdash_reset_log_action() {
 
+		if ( ! isset( $_REQUEST['_wpnonce'], $_REQUEST['action'] ) ) {
+			$output = [
+				'status'  => 'fail',
+				'message' => __( 'There is an issue with reset request.', LOGDASH_DOMAIN )
+			];
+			$this->send_result( $output );
+		}
 
 		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'logdash_reset_log' ) ) {
 			$output = [
