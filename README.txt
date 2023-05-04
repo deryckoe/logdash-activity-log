@@ -71,13 +71,7 @@ LogDash has been developed with performance in mind. However, it should be consi
 
 = There is any limitation for the events stored in the database? =
 
-The only limitation is the database size restrictions that your hosting plan may have. However, to avoid reaching that possible limit, you can specify the days you want to keep the log entries. 
-
-== Screenshots ==
-
-1. Description 1
-2. Description 2
-3. Description 3
+The only limitation is the database size restrictions that your hosting plan may have. However, to avoid reaching that possible limit, you can specify the days you want to keep the log entries.
 
 == Changelog ==
 

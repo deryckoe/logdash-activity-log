@@ -256,12 +256,13 @@ class Users extends HooksBase {
 			return;
 		}
 
+
 		$this->event
 			->insert( EventTypes::MODIFIED, EventCodes::USER_UPDATED_META, self::$object_type, self::$object_type, $user_id, $current_user->ID, $current_user_role )
 			->attachMany( [
 				new EventMeta( 'fieldName', $meta_key ),
-				new EventMeta( 'oldValue', (string) $this->old_meta[ $meta_key ] ),
-				new EventMeta( 'newValue', (string) $meta_value ),
+				new EventMeta( 'oldValue', $this->old_meta[ $meta_key ] ),
+				new EventMeta( 'newValue', $meta_value ),
 				new EventMeta( 'userLogin', $event_user->user_login ),
 				new EventMeta( 'firstName', $event_user->first_name ),
 				new EventMeta( 'lastName', $event_user->last_name ),
@@ -284,7 +285,7 @@ class Users extends HooksBase {
 			$actions = [
 				[
 					'href'   => get_edit_user_link( $user->ID ),
-					'target' => '_self',
+					'target' => '_self' . $user->ID,
 					'label'  => ( $user->ID === get_current_user_id() ) ? __( 'View profile' ) : __( 'Edit user' )
 				]
 			];
