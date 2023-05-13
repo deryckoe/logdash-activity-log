@@ -30,7 +30,7 @@ class RestEndpoints {
 					$table = $wpdb->prefix . 'logdash_ip_info';
 					$ip = $data->get_param('ip') ?? '0';
 
-					$query = $wpdb->prepare("SELECT * FROM $table WHERE ip = '%s';", [ $ip ] );
+					$query = $wpdb->prepare("SELECT * FROM $table WHERE ip = %s;", [ $ip ] );
 					$result = $wpdb->get_results( $query );
 
 					if ( ! empty( $result[0]->info ) ) {

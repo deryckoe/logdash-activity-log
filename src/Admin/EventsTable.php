@@ -54,8 +54,8 @@ class EventsTable extends \WP_List_Table {
 
 		$this->table_data_count = $this->fetch_table_data_count();
 
-		$per_page     = 20;
-		$total_items  = $this->table_data_count;
+		$per_page    = 20;
+		$total_items = $this->table_data_count;
 
 		$this->set_pagination_args( array(
 			'total_items' => $total_items, // total number of items
@@ -76,55 +76,68 @@ class EventsTable extends \WP_List_Table {
 		$where = ' WHERE 1=1 ';
 
 		if ( ! empty( $_GET['s'] ) ) {
-			$s = trim( $_GET['s'] );
+			$s = trim( esc_sql( $_GET['s'] ) );
 
-			$where = " WHERE event_type LIKE '%$s%' 
-                        OR event_code LIKE '%$s%' 
-                        OR object_type LIKE '%$s%'  
-                        OR object_subtype LIKE '%$s%'  
-                        OR object_id LIKE '%$s%' 
-                        OR user_id LIKE '%$s%'  
-                        OR user_ip LIKE '%$s%' ";
 
-			$ids        = "SELECT event_id FROM {$wpdb->prefix}logdash_activity_meta WHERE value LIKE '%$s%' GROUP BY event_id;";
+			$s_param = array_fill( 0, 7, '%' . $wpdb->esc_like( $s ) . '%' );
+			$where   = $wpdb->prepare( "WHERE event_type LIKE %s 
+                        OR event_code LIKE %s 
+                        OR object_type LIKE %s  
+                        OR object_subtype LIKE %s  
+                        OR object_id LIKE %s 
+                        OR user_id LIKE %s  
+                        OR user_ip LIKE %s ", $s_param );
+
+
+			$ids        = $wpdb->prepare(
+				"SELECT event_id FROM {$wpdb->prefix}logdash_activity_meta WHERE value LIKE %s GROUP BY event_id;",
+				'%' . $wpdb->esc_like( $s ) . '%'
+			);
 			$ids_query  = $wpdb->get_col( $ids );
 			$ids_string = implode( ',', $ids_query );
 
 			if ( ! empty( $ids_query ) ) {
-				$where .= " OR ID IN($ids_string) ";
+				$where .= $wpdb->prepare( " OR ID IN(%d) ", $ids_string );
 			}
 		}
 
 		if ( ! empty( $_GET['dateshow'] ) ) {
-			if ( $_GET['dateshow'] === 'today' ) {
+
+			$date_show = sanitize_text_field( $_GET['dateshow'] );
+
+			if ( $date_show === 'today' ) {
 				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') = CURRENT_DATE ";
 			}
-			if ( $_GET['dateshow'] === 'yesterday' ) {
+			if ( $date_show === 'yesterday' ) {
 				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') = DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY) ";
 			}
-			if ( $_GET['dateshow'] === 'week' ) {
+			if ( $date_show === 'week' ) {
 				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') >= DATE_SUB(CURRENT_DATE, INTERVAL 1 WEEK) ";
 			}
-			if ( $_GET['dateshow'] === 'month' ) {
+			if ( $date_show === 'month' ) {
 				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH) ";
 			}
 
 		}
 
 		if ( ! empty( $_GET['capshow'] ) ) {
-			$where .= " AND user_caps = '" . $_GET['capshow'] . "' ";
+			$cap_show = sanitize_text_field( $_GET['capshow'] );
+			$where    .= $wpdb->prepare( " AND user_caps = %s ", $cap_show );
 		}
 
 		if ( ! empty( $_GET['usershow'] ) ) {
-			$where .= " AND user_id = " . $_GET['usershow'] . " ";
+			$user_show = sanitize_text_field( $_GET['usershow'] );
+			$where     .= $wpdb->prepare( " AND user_id = %d ", $user_show );
 		}
 
 		if ( ! empty( $_GET['subtypeshow'] ) ) {
-			$where .= " AND object_subtype = '" . $_GET['subtypeshow'] . "' ";
+			$subtype_show = sanitize_text_field( $_GET['subtypeshow'] );
+			$where        .= $wpdb->prepare( " AND object_subtype = %s ", $subtype_show );
 		}
 
 		if ( ! empty( $_GET['actionshow'] ) ) {
-			$where .= " AND event_type = '" . $_GET['actionshow'] . "' ";
+			$action_show = sanitize_text_field( $_GET['actionshow'] );
+			$where       .= $wpdb->prepare( " AND event_type = %s ", $action_show );
 		}
 
 		return $where;
@@ -144,8 +157,8 @@ class EventsTable extends \WP_List_Table {
 
 		global $wpdb;
 		$wpdb_table = $wpdb->prefix . 'logdash_activity_log';
-		$orderby    = ( isset( $_GET['orderby'] ) ) ? esc_sql( $_GET['orderby'] ) : 'created';
-		$order      = ( isset( $_GET['order'] ) ) ? esc_sql( $_GET['order'] ) : 'DESC';
+		$orderby    = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
+		$order      = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
 		$where      = $this->apply_where_filter();
 
 		$per_page     = $this->get_pagination_arg( 'per_page' );
@@ -299,9 +312,10 @@ HTML;
 	}
 
 	protected function column_cb( $item ) {
+		$item_id = esc_attr($item['ID']);
 		return sprintf(
-			'<label class="screen-reader-text" for="event_' . $item['ID'] . '">' . sprintf( __( 'Select %s' ), $item['ID'] ) . '</label>'
-			. "<input type='checkbox' name='events[]' id='event_{$item['ID']}' value='{$item['ID']}' />"
+			'<label class="screen-reader-text" for="event_' . esc_attr($item['ID']) . '">' . sprintf( esc_attr__( 'Select %s' ), $item['ID'] ) . '</label>'
+			. "<input type='checkbox' name='events[]' id='event_{$item_id}' value='{$item_id}' />"
 		);
 	}
 
@@ -337,7 +351,7 @@ HTML;
 				'month'     => 'Last Month',
 			];
 
-			$selected_date_show = isset( $_GET['dateshow'] ) ? $_GET['dateshow'] : '';
+			$selected_date_show = isset( $_GET['dateshow'] ) ? sanitize_text_field( $_GET['dateshow'] ) : '';
 
 			?>
 			<select name="dateshow" id="temp-1">
@@ -356,7 +370,7 @@ HTML;
 
 			$caps_results = $wpdb->get_results( $caps_query );
 
-			$selected_cap = isset( $_GET['capshow'] ) ? $_GET['capshow'] : '';
+			$selected_cap = isset( $_GET['capshow'] ) ? sanitize_text_field( $_GET['capshow'] ) : '';
 
 			?>
 
@@ -374,7 +388,7 @@ HTML;
 
 			$users_result = $wpdb->get_results( $users_query );
 
-			$selected_user = isset( $_GET['usershow'] ) ? $_GET['usershow'] : '';
+			$selected_user = isset( $_GET['usershow'] ) ? sanitize_text_field( $_GET['usershow'] ) : '';
 
 			?>
 			<select name="usershow" id="temp-3">
@@ -398,7 +412,7 @@ HTML;
 
 			$type_result = $wpdb->get_results( $type_query );
 
-			$selected_type = isset( $_GET['subtypeshow'] ) ? $_GET['subtypeshow'] : '';
+			$selected_type = isset( $_GET['subtypeshow'] ) ? sanitize_text_field( $_GET['subtypeshow'] ) : '';
 
 			?>
 			<select name="subtypeshow" id="temp-4">
@@ -426,7 +440,7 @@ HTML;
 
 			$action_result = $wpdb->get_results( $action_query );
 
-			$selected_type = isset( $_GET['actionshow'] ) ? $_GET['actionshow'] : '';
+			$selected_type = isset( $_GET['actionshow'] ) ? sanitize_text_field( $_GET['actionshow'] ) : '';
 
 			?>
 			<select name="actionshow" id="temp-5">
@@ -442,7 +456,8 @@ HTML;
 
 			foreach ( $filters as $filter ) {
 				if ( ! empty( $_GET[ $filter ] ) ) {
-					?> <a href="?page=<?php echo $_GET['page'] ?>" style="margin-left: 5px;"><?php _e('Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
+					?> <a href="?page=<?php echo $_GET['page'] ?>"
+					      style="margin-left: 5px;"><?php _e( 'Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
 					break;
 				}
 			}

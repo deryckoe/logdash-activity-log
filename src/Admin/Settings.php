@@ -116,7 +116,7 @@ class Settings {
 			'reset_log',
 			__( 'Delete Log Activities', LOGDASH_DOMAIN ),
 			function ( $attr ) {
-				echo '<a href="' . $attr['ajax_url'] . '" id="' . $attr['id'] . '" data-confirm-message="' . esc_html( $attr['confirm_message'] ) . '">Reset Database</a><p class="description">' . $attr['label_description'] . '</p><div id="logdash_message" class="notice" style="display: none;"><p>...</p></div>';
+				echo '<a href="' . esc_url( $attr['ajax_url'] ) . '" id="' . esc_attr( $attr['id'] ) . '" data-confirm-message="' . esc_attr( $attr['confirm_message'] ) . '">Reset Database</a><p class="description">' . esc_attr( $attr['label_description'] ) . '</p><div id="logdash_message" class="notice" style="display: none;"><p>...</p></div>';
 			},
 			'logdash',
 			'logdash_section_developers',
@@ -138,9 +138,9 @@ class Settings {
 		$options = $this->get_options();
 
 		$input_type        = esc_attr( $args['input_type'] );
-		$input_class       = isset( $args['input_class'] ) ? esc_attr( $args['input_class'] ) : 'regular-text';
-		$input_name        = isset( $args['input_name'] ) ? esc_attr( $args['input_name'] ) : '';
-		$label_suffix      = isset( $args['label_suffix'] ) ? esc_attr( $args['label_suffix'] ) : '';
+		$input_class       = isset( $args['input_class'] ) ? $args['input_class'] : 'regular-text';
+		$input_name        = isset( $args['input_name'] ) ? $args['input_name'] : '';
+		$label_suffix      = isset( $args['label_suffix'] ) ? $args['label_suffix'] : '';
 		$label_description = $args['label_description'] ?? '';
 
 		$input_value = $options[ $input_name ] ?? '';
@@ -158,9 +158,9 @@ class Settings {
 				break;
 
 			case InputTypes::TEXTAREA:
-				$input_rows  = isset( $args['input_rows'] ) ? esc_attr( $args['input_rows'] ) : '10';
-				$input_cols  = isset( $args['input_cols'] ) ? esc_attr( $args['input_cols'] ) : '50';
-				$input_field = '<textarea class="' . $input_class . '" name="logdash_options[' . $input_name . ']" rows="' . $input_rows . '" cols="' . $input_cols . '">'
+				$input_rows  = isset( $args['input_rows'] ) ? $args['input_rows'] : '10';
+				$input_cols  = isset( $args['input_cols'] ) ? $args['input_cols'] : '50';
+				$input_field = '<textarea class="' . esc_attr( $input_class ) . '" name="logdash_options[' . esc_attr( $input_name ) . ']" rows="' . esc_attr( $input_rows ) . '" cols="' . esc_attr( $input_cols ) . '">'
 				               . $input_value
 				               . '</textarea>';
 				break;
@@ -174,14 +174,14 @@ class Settings {
 					$min = '';
 				}
 
-				$input_field = '<input class="' . $input_class . '" name="logdash_options[' . $input_name . ']" type="' . $input_type . '" value="' . $input_value . '" ' . $min . ' />';
+				$input_field = '<input class="' . esc_attr( $input_class ) . '" name="logdash_options[' . esc_attr( $input_name ) . ']" type="' . esc_attr( $input_type ) . '" value="' . esc_attr( $input_value ) . '" ' . $min . ' />';
 				break;
 		}
 
-		echo $input_field . ' ' . $label_suffix;
+		echo $input_field . ' ' . esc_textarea( $label_suffix );
 
 		if ( $label_description ) {
-			echo '<p class="description">' . $label_description . '</p>';
+			echo '<p class="description">' . esc_textarea( $label_description ) . '</p>';
 		}
 
 		return true;
