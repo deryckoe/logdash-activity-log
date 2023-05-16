@@ -458,7 +458,7 @@ HTML;
 			foreach ( $filters as $filter ) {
 				if ( ! empty( $_GET[ $filter ] ) ) {
 					$page = sanitize_text_field( $_GET['page'] );
-					?> <a href="?page=<?php echo $page ?>"
+					?> <a href="?page=<?php echo esc_html( $page ) ?>"
 					      style="margin-left: 5px;"><?php _e( 'Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
 					break;
 				}

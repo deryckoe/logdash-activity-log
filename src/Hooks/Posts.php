@@ -83,7 +83,7 @@ class Posts extends HooksBase {
 			return;
 		}
 
-		$post_id      = $_GET['post'];
+		$post_id      = intval( $_GET['post'] );
 		$post         = get_post( $post_id );
 		$current_user = wp_get_current_user();
 
