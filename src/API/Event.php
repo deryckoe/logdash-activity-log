@@ -26,7 +26,7 @@ class Event {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			$user_agent = 'WP-CLI/' . WP_CLI_VERSION . ' ' . php_uname( 's' ) . ' ' . php_uname( 'v' );
 		} else {
-			$user_agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+			$user_agent = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] ) ?? '';
 		}
 
 		$wpdb->insert( $table,
@@ -139,11 +139,11 @@ class Event {
 		}
 
 		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
+			$ip = sanitize_text_field( $_SERVER['HTTP_CLIENT_IP'] );
 		} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			$ip = sanitize_text_field( $_SERVER['HTTP_X_FORWARDED_FOR'] );
 		} else {
-			$ip = $_SERVER['REMOTE_ADDR'];
+			$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 		}
 
 		do_action( 'tally_get_user_ip', $ip );

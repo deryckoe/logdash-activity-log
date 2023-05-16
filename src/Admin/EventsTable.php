@@ -76,7 +76,7 @@ class EventsTable extends \WP_List_Table {
 		$where = ' WHERE 1=1 ';
 
 		if ( ! empty( $_GET['s'] ) ) {
-			$s = trim( esc_sql( $_GET['s'] ) );
+			$s = trim( sanitize_text_field( $_GET['s'] ) );
 
 
 			$s_param = array_fill( 0, 7, '%' . $wpdb->esc_like( $s ) . '%' );
@@ -312,9 +312,10 @@ HTML;
 	}
 
 	protected function column_cb( $item ) {
-		$item_id = esc_attr($item['ID']);
+		$item_id = esc_attr( $item['ID'] );
+
 		return sprintf(
-			'<label class="screen-reader-text" for="event_' . esc_attr($item['ID']) . '">' . sprintf( esc_attr__( 'Select %s' ), $item['ID'] ) . '</label>'
+			'<label class="screen-reader-text" for="event_' . esc_attr( $item['ID'] ) . '">' . sprintf( esc_attr__( 'Select %s' ), $item['ID'] ) . '</label>'
 			. "<input type='checkbox' name='events[]' id='event_{$item_id}' value='{$item_id}' />"
 		);
 	}
@@ -340,15 +341,15 @@ HTML;
 
 		if ( $which === 'top' ) :
 
-			$filters = [ 'dateshow', 'capshow', 'usershow', 'typeshow', 'actionshow' ];
+			$filters = [ 'dateshow', 'capshow', 'usershow', 'subtypeshow', 'actionshow' ];
 
 
 			$date_show = [
-				''          => 'All time',
-				'today'     => 'Today',
-				'yesterday' => 'Yesterday',
-				'week'      => 'Last Week',
-				'month'     => 'Last Month',
+				''          => __( 'All time', LOGDASH_DOMAIN ),
+				'today'     => __( 'Today', LOGDASH_DOMAIN ),
+				'yesterday' => __( 'Yesterday', LOGDASH_DOMAIN ),
+				'week'      => __( 'Last Week', LOGDASH_DOMAIN ),
+				'month'     => __( 'Last Month', LOGDASH_DOMAIN ),
 			];
 
 			$selected_date_show = isset( $_GET['dateshow'] ) ? sanitize_text_field( $_GET['dateshow'] ) : '';
@@ -357,7 +358,7 @@ HTML;
 			<select name="dateshow" id="temp-1">
 				<?php foreach ( $date_show as $value => $label ) : ?>
 					<option
-						value="<?php echo $value ?>" <?php selected( $selected_date_show, $value ) ?>><?php echo $label ?></option>
+						value="<?php echo esc_attr( $value ) ?>" <?php selected( esc_attr( $selected_date_show ), esc_attr( $value ) ) ?>><?php echo esc_html( $label ) ?></option>
 				<?php endforeach; ?>
 			</select>
 
@@ -375,10 +376,10 @@ HTML;
 			?>
 
 			<select name="capshow" id="temp-2">
-				<option value=""><?php _e( 'All Roles' ) ?></option>
+				<option value=""><?php esc_attr_e( 'All Roles', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $caps_results as $cap ) : ?>
 					<option
-						value="<?php echo $cap->user_caps ?>" <?php selected( $selected_cap, $cap->user_caps ) ?>><?php echo translate_user_role( ucfirst( $cap->user_caps ) ) ?></option>
+						value="<?php echo esc_attr( $cap->user_caps ) ?>" <?php selected( esc_attr( $selected_cap ), esc_attr( $cap->user_caps ) ) ?>><?php echo translate_user_role( ucfirst( esc_html( $cap->user_caps ) ) ) ?></option>
 				<?php endforeach; ?>
 			</select>
 
@@ -392,11 +393,11 @@ HTML;
 
 			?>
 			<select name="usershow" id="temp-3">
-				<option value="">All Users</option>
+				<option value=""><?php _e( 'All Users', LOGDASH_DOMAIN ); ?></option>
 				<?php foreach ( $users_result as $user ) : ?>
 					<?php $user_data = get_user_by( 'ID', $user->user_id ); ?>
 					<option
-						value="<?php echo $user->user_id ?>" <?php selected( $selected_user, $user->user_id ) ?>><?php echo $user_data->user_login ?></option>
+						value="<?php echo esc_attr( $user->user_id ) ?>" <?php selected( esc_attr( $selected_user ), esc_attr( $user->user_id ) ) ?>><?php echo esc_html( $user_data->user_login ) ?></option>
 				<?php endforeach; ?>
 			</select>
 			<?php
@@ -416,12 +417,12 @@ HTML;
 
 			?>
 			<select name="subtypeshow" id="temp-4">
-				<option value="">All Contexts</option>
+				<option value=""><?php _e( 'All Contexts', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $type_result as $type ) :
 					?>
-					<option value="<?php echo $type->object_subtype
-					?>" <?php selected( $selected_type, $type->object_subtype )
-					?>><?php echo ucfirst( $type->object_subtype )
+					<option value="<?php echo esc_attr( $type->object_subtype )
+					?>" <?php selected( esc_attr( $selected_type ), esc_attr( $type->object_subtype ) )
+					?>><?php echo ucfirst( esc_html( $type->object_subtype ) )
 						?></option>
 				<?php endforeach;
 				?>
@@ -444,10 +445,10 @@ HTML;
 
 			?>
 			<select name="actionshow" id="temp-5">
-				<option value="">All Actions</option>
+				<option value=""><?php _e( 'All Actions', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $action_result as $action ) : ?>
 					<option
-						value="<?php echo $action->event_type ?>" <?php selected( $selected_type, $action->event_type ) ?>><?php echo ucfirst( $action->event_type ) ?></option>
+						value="<?php echo( esc_attr( $action->event_type ) ) ?>" <?php selected( esc_attr( $selected_type ), esc_attr( $action->event_type ) ) ?>><?php echo ucfirst( esc_html( $action->event_type ) ) ?></option>
 				<?php endforeach; ?>
 			</select>
 
@@ -456,7 +457,8 @@ HTML;
 
 			foreach ( $filters as $filter ) {
 				if ( ! empty( $_GET[ $filter ] ) ) {
-					?> <a href="?page=<?php echo $_GET['page'] ?>"
+					$page = sanitize_text_field( $_GET['page'] );
+					?> <a href="?page=<?php echo $page ?>"
 					      style="margin-left: 5px;"><?php _e( 'Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
 					break;
 				}

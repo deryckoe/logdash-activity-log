@@ -151,17 +151,17 @@ class Settings {
 
 				$input_options = '';
 				foreach ( $args['input_options'] as $key => $value ) {
-					$selected      = selected( $key, $input_value, false );
-					$input_options .= '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . $value . '</option>';
+					$selected      = selected( esc_attr( $key ), esc_attr( $input_value ), false );
+					$input_options .= '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_html( $value ) . '</option>';
 				};
-				$input_field = '<select class="' . $input_class . '" name="logdash_options[' . $input_name . ']">' . $input_options . '</select>';
+				$input_field = '<select class="' . esc_attr( $input_class ) . '" name="logdash_options[' . esc_attr( $input_name ) . ']">' . esc_html( $input_options ) . '</select>';
 				break;
 
 			case InputTypes::TEXTAREA:
 				$input_rows  = isset( $args['input_rows'] ) ? $args['input_rows'] : '10';
 				$input_cols  = isset( $args['input_cols'] ) ? $args['input_cols'] : '50';
 				$input_field = '<textarea class="' . esc_attr( $input_class ) . '" name="logdash_options[' . esc_attr( $input_name ) . ']" rows="' . esc_attr( $input_rows ) . '" cols="' . esc_attr( $input_cols ) . '">'
-				               . $input_value
+				               . esc_html( $input_value )
 				               . '</textarea>';
 				break;
 

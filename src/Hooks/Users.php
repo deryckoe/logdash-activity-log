@@ -43,8 +43,8 @@ class Users extends HooksBase {
 			return;
 		}
 
-		$action       = $_POST['action'];
-		$user_id      = $_POST['user_id'];
+		$action       = sanitize_text_field( $_POST['action'] );
+		$user_id      = intval( $_POST['user_id'] );
 		$user         = get_user_by( 'ID', $user_id );
 		$current_user = wp_get_current_user();
 
@@ -244,8 +244,8 @@ class Users extends HooksBase {
 
 	public function updated_user_meta( $meta_id, $user_id, $meta_key, $meta_value ) {
 
-		$event_user   = get_user_by( 'ID', $user_id );
-		$current_user = wp_get_current_user();
+		$event_user        = get_user_by( 'ID', $user_id );
+		$current_user      = wp_get_current_user();
 		$current_user_role = $current_user->roles[0] ?? null;
 
 		if ( $this->old_meta[ $meta_key ] === $meta_value ) {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LogDash Activity Log\n"
-"POT-Creation-Date: 2023-04-14 13:02-0400\n"
-"PO-Revision-Date: 2023-04-14 13:06-0400\n"
+"POT-Creation-Date: 2023-05-15 21:17-0400\n"
+"PO-Revision-Date: 2023-05-15 21:18-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: logdash-activity-log.php\n"
@@ -68,7 +68,7 @@ msgstr "Código"
 msgid "Date"
 msgstr "Fecha"
 
-#: src/Admin/EventsTable.php:32 src/Hooks/Users.php:310 src/Hooks/Users.php:361
+#: src/Admin/EventsTable.php:32 src/Hooks/Users.php:311 src/Hooks/Users.php:362
 msgid "User"
 msgstr "Usuario"
 
@@ -97,16 +97,48 @@ msgstr ""
 msgid "No events have been logged yet."
 msgstr "Aún no se ha registrado ningún evento."
 
-#: src/Admin/EventsTable.php:303
+#: src/Admin/EventsTable.php:318
 #, php-format
 msgid "Select %s"
 msgstr "Seleccionar %s"
 
-#: src/Admin/EventsTable.php:364
-msgid "All Roles"
-msgstr "Todas las Funciones"
+#: src/Admin/EventsTable.php:348
+msgid "All time"
+msgstr "Todos"
 
-#: src/Admin/EventsTable.php:445
+#: src/Admin/EventsTable.php:349
+msgid "Today"
+msgstr "Hoy"
+
+#: src/Admin/EventsTable.php:350
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: src/Admin/EventsTable.php:351
+msgid "Last Week"
+msgstr "Semana pasada"
+
+#: src/Admin/EventsTable.php:352
+msgid "Last Month"
+msgstr "Mes pasado"
+
+#: src/Admin/EventsTable.php:379
+msgid "All Roles"
+msgstr "Todos los roles"
+
+#: src/Admin/EventsTable.php:396
+msgid "All Users"
+msgstr "Todos los usuarios"
+
+#: src/Admin/EventsTable.php:420
+msgid "All Contexts"
+msgstr "Todos"
+
+#: src/Admin/EventsTable.php:448
+msgid "All Actions"
+msgstr "Todas las acciones"
+
+#: src/Admin/EventsTable.php:462
 msgid "Reset filter"
 msgstr "Restablecer filtro"
 
@@ -615,7 +647,7 @@ msgstr "Nueva Version"
 #: src/Hooks/Core.php:87 src/Hooks/Files.php:190 src/Hooks/Meta.php:191
 #: src/Hooks/Plugins.php:211 src/Hooks/Posts.php:685 src/Hooks/Settings.php:249
 #: src/Hooks/Taxonomies.php:203 src/Hooks/Themes.php:184
-#: src/Hooks/Users.php:413
+#: src/Hooks/Users.php:414
 msgid "User Agent"
 msgstr "Agente de usuario"
 
@@ -697,12 +729,12 @@ msgid "Meta key"
 msgstr "Meta key"
 
 #: src/Hooks/Meta.php:164 src/Hooks/Meta.php:179 src/Hooks/Settings.php:222
-#: src/Hooks/Settings.php:236 src/Hooks/Users.php:385
+#: src/Hooks/Settings.php:236 src/Hooks/Users.php:386
 msgid "Old value"
 msgstr "Valor antiguo"
 
 #: src/Hooks/Meta.php:165 src/Hooks/Settings.php:211 src/Hooks/Settings.php:237
-#: src/Hooks/Users.php:314
+#: src/Hooks/Users.php:315
 msgid "New value"
 msgstr "Nuevo valor"
 
@@ -962,67 +994,67 @@ msgstr "Nuevo nombre"
 msgid "Term slug"
 msgstr "Term slug"
 
-#: src/Hooks/Users.php:288
+#: src/Hooks/Users.php:289
 msgid "View profile"
 msgstr "Ver perfil"
 
-#: src/Hooks/Users.php:288
+#: src/Hooks/Users.php:289
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: src/Hooks/Users.php:311 src/Hooks/Users.php:327 src/Hooks/Users.php:399
+#: src/Hooks/Users.php:312 src/Hooks/Users.php:328 src/Hooks/Users.php:400
 msgid "Roles"
 msgstr "Roles"
 
-#: src/Hooks/Users.php:312
+#: src/Hooks/Users.php:313
 msgid "Updated field"
 msgstr "Campo actualizado"
 
-#: src/Hooks/Users.php:313
+#: src/Hooks/Users.php:314
 msgid "Previous value"
 msgstr "Valor anterior"
 
-#: src/Hooks/Users.php:326 src/Hooks/Users.php:398
+#: src/Hooks/Users.php:327 src/Hooks/Users.php:399
 msgid "User login"
 msgstr "Login del usuario"
 
-#: src/Hooks/Users.php:328
+#: src/Hooks/Users.php:329
 msgid "First name"
 msgstr "Nombre"
 
-#: src/Hooks/Users.php:329
+#: src/Hooks/Users.php:330
 msgid "Last name"
 msgstr "Apellidos"
 
-#: src/Hooks/Users.php:333
+#: src/Hooks/Users.php:334
 msgid "Reassign posts"
 msgstr "Reasignar puestos"
 
-#: src/Hooks/Users.php:362
+#: src/Hooks/Users.php:363
 msgid "Attempts"
 msgstr "Intentos"
 
-#: src/Hooks/Users.php:363
+#: src/Hooks/Users.php:364
 msgid "Last attempt"
 msgstr "Último intento"
 
-#: src/Hooks/Users.php:364
+#: src/Hooks/Users.php:365
 msgid "Last Error"
 msgstr "Ultimo error"
 
-#: src/Hooks/Users.php:384
+#: src/Hooks/Users.php:385
 msgid "User field"
 msgstr "Campo de usuario"
 
-#: src/Hooks/Users.php:386
+#: src/Hooks/Users.php:387
 msgid "New new"
 msgstr "Nuevo Nuevo"
 
-#: src/Hooks/Users.php:400
+#: src/Hooks/Users.php:401
 msgid "First Name"
 msgstr "Nombre"
 
-#: src/Hooks/Users.php:401
+#: src/Hooks/Users.php:402
 msgid "Last Name"
 msgstr "Apellido"
 
