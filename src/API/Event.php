@@ -146,6 +146,13 @@ class Event {
 			$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 		}
 
+		$pattern = '/\b(?:\d{1,3}\.){3}\d{1,3}\b/';
+		preg_match($pattern, $ip, $matches);
+
+		if ( ! empty( $matches[0] ) ) {
+			$ip = $matches[0];
+		}
+
 		do_action( 'tally_get_user_ip', $ip );
 
 		return $ip;
