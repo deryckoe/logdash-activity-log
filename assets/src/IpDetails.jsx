@@ -1,10 +1,12 @@
 import {useState} from '@wordpress/element';
 
-const IpDetails = (props) => {
+function IpDetails(props) {
     const [isShown, setIsShown] = useState(false);
     const [error, setError] = useState(null);
     const [details, setDetails] = useState(null);
-    const loadAndShow = () => {
+
+    function loadAndShow() {
+
 
         if (sessionStorage.getItem(props.address)) {
 
@@ -13,6 +15,7 @@ const IpDetails = (props) => {
             setIsShown(true);
 
         } else {
+
             fetch(wpApiSettings.root + 'logdash/v1/ip/' + props.address, {
                 method: 'get',
                 mode: 'cors',
@@ -23,21 +26,18 @@ const IpDetails = (props) => {
             })
                 .then(response => response.json())
                 .then(response => {
-                    if (response.code === 'rest_forbidden') {
-                        return Promise.reject(response);
-                    }
-                    if (response.code) {
-                        return Promise.reject({code: 'error', message: 'There is an error.'});
+                    if (response.code !== '200') {
+                        return Promise.reject(response.data.message);
                     }
                     return response;
                 })
-                .then(data => {
-                    setDetails(data);
-                    sessionStorage.setItem(props.address, JSON.stringify(data));
-                    return data;
+                .then(response => {
+                    setDetails(response.data);
+                    sessionStorage.setItem(props.address, JSON.stringify(response.data));
+                    return response.data;
                 })
-                .catch((response) => {
-                    setError(response.message);
+                .catch((error) => {
+                    setError(error);
                 })
                 .finally(() => setIsShown(true));
 
@@ -45,7 +45,7 @@ const IpDetails = (props) => {
 
     }
 
-    const viewDetails = () => {
+    function viewDetails() {
         if (error) {
             return (
                 <ul>
@@ -55,13 +55,11 @@ const IpDetails = (props) => {
         } else {
             return (
                 <ul>
-                    <li>
-                        <b>City:</b> {details.city.names.en}, {details.subdivisions[0].names.en}, {details.subdivisions[0].iso_code}
-                    </li>
-                    <li><b>Country:</b> {details.country.names.en}, {details.country.is_code}</li>
-                    <li><b>Latitude:</b> {details.location.latitude}</li>
-                    <li><b>Longitude:</b> {details.location.longitude}</li>
-                    <li><b>Provider:</b> {details.traits.isp}</li>
+                    <li><b>City:</b> {details.city}</li>
+                    <li><b>Country:</b> {details.country_name}, { details.country_code }</li>
+                    <li><b>Latitude:</b> {details.lat}</li>
+                    <li><b>Longitude:</b> {details.lon}</li>
+                    <li><b>Provider:</b> {details.isp}</li>
                 </ul>
             )
         }
@@ -83,5 +81,6 @@ const IpDetails = (props) => {
             )}
         </div>
     );
-};
+}
+
 export default IpDetails;

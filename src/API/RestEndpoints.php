@@ -33,8 +33,22 @@ class RestEndpoints {
 					$query = $wpdb->prepare("SELECT * FROM $table WHERE ip = %s;", [ $ip ] );
 					$result = $wpdb->get_results( $query );
 
-					if ( ! empty( $result[0]->info ) ) {
-						return json_decode($result[0]->info);
+					if ( empty( $result ) ) {
+						echo json_encode( [
+							'code' => '400',
+							'data' => [
+								'message' => 'No information available for ' . $ip
+							],
+						] );
+						exit;
+					}
+
+					if ( ! empty( $result[0] ) ) {
+						echo json_encode([
+							'code' => '200',
+							'data' => $result[0]
+						]);
+						exit;
 					}
 
 				}

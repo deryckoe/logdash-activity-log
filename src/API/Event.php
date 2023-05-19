@@ -147,7 +147,7 @@ class Event {
 		}
 
 		$pattern = '/\b(?:\d{1,3}\.){3}\d{1,3}\b/';
-		preg_match($pattern, $ip, $matches);
+		preg_match( $pattern, $ip, $matches );
 
 		if ( ! empty( $matches[0] ) ) {
 			$ip = $matches[0];
@@ -178,21 +178,42 @@ class Event {
 		$response = wp_remote_get( "https://api.findip.net/$ip/?token=" . LOGDASH_FINDIP_TOKEN );
 
 		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-			$info = $response['body'];
+
+			$body = wp_remote_retrieve_body( $response );
+
+			$ip_data = json_decode( $body );
+			$ip_info = [
+				'ip'           => $ip,
+				'city'         => $ip_data->city->names->en ?? null,
+				'country_name' => $ip_data->country->names->en ?? null,
+				'country_code' => $ip_data->country->iso_code ?? null,
+				'lat'          => $ip_data->location->latitude ?? null,
+				'lon'          => $ip_data->location->longitude ?? null,
+				'isp'          => $ip_data->traits->isp ?? null,
+			];
+
 		} else {
-			$info = null;
+
+			$ip_info = [
+				'ip'           => $ip,
+				'city'         => null,
+				'country_name' => null,
+				'country_code' => null,
+				'lat'          => null,
+				'lon'          => null,
+				'isp'          => null,
+			];
+
 		}
 
-		$data   = [
-			'ip'   => $ip,
-			'info' => $info,
-		];
-		$format = [ '%s', '%s' ];
+		if ( empty( $ip_info['ip'] ) ) {
+			return;
+		}
 
-		$wpdb->insert( $table, $data, $format );
+		$format = [ '%s', '%s', '%s', '%s', '%s', '%s', '%s' ];
 
+		$wpdb->insert( $table, $ip_info, $format );
 		echo $wpdb->last_error;
-
 	}
 
 	public static function instance(): ?Event {

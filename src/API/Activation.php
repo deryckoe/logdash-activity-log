@@ -52,7 +52,12 @@ class Activation {
 		$tables[] = "CREATE TABLE `{$wpdb->prefix}logdash_ip_info` (
   				`ID` int NOT NULL AUTO_INCREMENT,
   				`ip` varchar(255) DEFAULT NULL,
-  				`info` longtext,
+				`city` text,
+				`country_name` text,
+				`country_code` text,
+				`lat` text,
+				`lon` text,
+				`isp` text,
   					PRIMARY KEY (`ID`)
 				) CHARSET={$wpdb->charset} COLLATE={$wpdb->collate};";
 
