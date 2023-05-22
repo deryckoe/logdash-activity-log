@@ -8,7 +8,7 @@
  * Plugin Name:       LogDash Activity Log
  * Plugin URI:        https://deryckoe.com/logdash-activity-log
  * Description:       The ultimate solution for tracking activities and security issues on your WordPress site.
- * Version:           1.0
+ * Version:           1.1
  * Author:            Deryck Oñate
  * Author URI:        http://deryckoe.com
  * License:           GPL-2.0+
