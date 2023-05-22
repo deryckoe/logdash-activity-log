@@ -5,7 +5,7 @@ Tags: Activity Log, User Activity, User Log, Audit Log, Security, Tracking, WooC
 Requires at least: 5.9.5
 Tested up to: 6.2
 Requires PHP: 7.4
-Stable tag: 1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,9 @@ The only limitation is the database size restrictions that your hosting plan may
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed a critical bug with Autoload
+
 = 1.1 =
 * Multisite support added.
 * Post ID added in details
@@ -84,6 +87,9 @@ The only limitation is the database size restrictions that your hosting plan may
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+* Fixed a critical bug with Autoload
 
 = 1.1 =
 * Multisite support added.
