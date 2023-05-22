@@ -24,8 +24,10 @@ class Activation {
 	public function create_tables() {
 
 		global $wpdb;
+		$main_site_id = get_main_site_id();
+		$main_prefix = $wpdb->get_blog_prefix($main_site_id);
 
-		$tables[] = "CREATE TABLE `{$wpdb->prefix}logdash_activity_log` (
+		$tables[] = "CREATE TABLE `{$main_prefix}logdash_activity_log` (
 				`ID` bigint NOT NULL AUTO_INCREMENT,
 				`site_id` bigint NOT NULL,
 				`event_type` varchar(255) NOT NULL,
@@ -41,7 +43,7 @@ class Activation {
 				PRIMARY KEY (`ID`)
 				) CHARSET={$wpdb->charset} COLLATE={$wpdb->collate};";
 
-		$tables[] = "CREATE TABLE `{$wpdb->prefix}logdash_activity_meta` (
+		$tables[] = "CREATE TABLE `{$main_prefix}logdash_activity_meta` (
 				`ID` bigint NOT NULL AUTO_INCREMENT,
 				`event_id` bigint NOT NULL DEFAULT '0',
 				`name` varchar(255) NOT NULL,
@@ -49,7 +51,7 @@ class Activation {
 				  PRIMARY KEY (`ID`)
 				) CHARSET={$wpdb->charset} COLLATE={$wpdb->collate};";
 
-		$tables[] = "CREATE TABLE `{$wpdb->prefix}logdash_ip_info` (
+		$tables[] = "CREATE TABLE `{$main_prefix}logdash_ip_info` (
   				`ID` int NOT NULL AUTO_INCREMENT,
   				`ip` varchar(255) DEFAULT NULL,
 				`city` text,

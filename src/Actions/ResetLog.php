@@ -2,6 +2,8 @@
 
 namespace LogDash\Actions;
 
+use LogDash\API\DB;
+
 class ResetLog {
 
 	private static ?ResetLog $instance = null;
@@ -14,8 +16,9 @@ class ResetLog {
 		global $wpdb;
 		$this->wpdb   = $wpdb;
 		$this->tables = [
-			'logdash_activity_log',
-			'logdash_activity_meta',
+			'log'  => DB::log_table(),
+			'meta' => DB::meta_table(),
+			'ip'   => DB::ip_table(),
 		];
 	}
 
@@ -53,9 +56,21 @@ class ResetLog {
 			$this->send_result( $output );
 		}
 
-		foreach ( $this->tables as $table ) {
-			$table_name = $this->wpdb->prefix . $table;
-			$this->wpdb->query( "TRUNCATE TABLE $table_name" );
+		$site_id = get_current_blog_id();
+		$log_table = $this->tables['log'];
+		$meta_table = $this->tables['meta'];
+
+		$queue = [
+			'meta' => $this->wpdb->prepare( "
+				DELETE meta 
+			    FROM {$meta_table} AS meta 
+			    LEFT JOIN {$log_table} AS log ON meta.event_id = log.ID 
+			    WHERE log.site_id = %d;", $site_id ),
+			'log' => $this->wpdb->prepare("DELETE FROM {$log_table} WHERE site_id = %d;", $site_id),
+		];
+
+		foreach ( $queue as $task ) {
+			$this->wpdb->query($task);
 			if ( '' !== $this->wpdb->last_error ) {
 				$output = [
 					'status'  => 'error',

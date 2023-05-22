@@ -4,6 +4,8 @@
 
 namespace LogDash\Admin;
 
+use LogDash\API\Activation;
+use LogDash\API\DB;
 use LogDash\EventTypes;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +18,6 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 
 class EventsTable extends \WP_List_Table {
 
-	public string $plugin_text_domain = 'tally';
 	/**
 	 * @var array|object|null
 	 */
@@ -88,9 +89,10 @@ class EventsTable extends \WP_List_Table {
                         OR user_id LIKE %s  
                         OR user_ip LIKE %s ", $s_param );
 
+			$meta_table = DB::meta_table();
 
 			$ids        = $wpdb->prepare(
-				"SELECT event_id FROM {$wpdb->prefix}logdash_activity_meta WHERE value LIKE %s GROUP BY event_id;",
+				"SELECT event_id FROM {$meta_table} WHERE value LIKE %s GROUP BY event_id;",
 				'%' . $wpdb->esc_like( $s ) . '%'
 			);
 			$ids_query  = $wpdb->get_col( $ids );
@@ -148,9 +150,10 @@ class EventsTable extends \WP_List_Table {
 
 	public function fetch_table_data_count() {
 		global $wpdb;
-		$wpdb_table = $wpdb->prefix . 'logdash_activity_log';
 
-		$query = "SELECT COUNT(*) as AGGREGATE FROM $wpdb_table {$this->apply_where_filter()}";
+		$log_table = DB::log_table();
+
+		$query = "SELECT COUNT(*) as AGGREGATE FROM $log_table {$this->apply_where_filter()}";
 
 		return $wpdb->get_var( $query );
 
@@ -159,7 +162,9 @@ class EventsTable extends \WP_List_Table {
 	public function fetch_table_data_paginated() {
 
 		global $wpdb;
-		$wpdb_table = $wpdb->prefix . 'logdash_activity_log';
+		$log_table = DB::log_table();
+		$meta_table = DB::meta_table();
+
 		$orderby    = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
 		$order      = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
 
@@ -169,7 +174,7 @@ class EventsTable extends \WP_List_Table {
 		$event_query = "SELECT 
                             ID, event_type, event_code, object_type, object_subtype, object_id, user_id, user_caps, user_ip, user_agent, created
                         FROM 
-                            $wpdb_table {$this->apply_where_filter()} 
+                            $log_table {$this->apply_where_filter()} 
                         ORDER BY $orderby $order 
                         LIMIT $current_page, $per_page";
 
@@ -185,7 +190,7 @@ class EventsTable extends \WP_List_Table {
 		$events_meta = "SELECT
 	                        ID, event_id, name, value
                         FROM
-	                        {$wpdb->prefix}logdash_activity_meta
+	                        {$meta_table}
                         WHERE event_id IN ($ids)";
 
 		$meta = $wpdb->get_results( $events_meta, ARRAY_A );
@@ -341,6 +346,10 @@ HTML;
 	protected function extra_tablenav( $which ) {
 		global $wpdb;
 
+		$log_table = DB::log_table();
+		$meta_table = DB::meta_table();
+		$site_id = get_current_blog_id();
+
 		if ( $which === 'top' ) :
 
 			$filters = [ 'dateshow', 'capshow', 'usershow', 'subtypeshow', 'actionshow' ];
@@ -367,8 +376,8 @@ HTML;
 			<?php
 
 			$caps_query = "SELECT user_caps 
-                FROM {$wpdb->prefix}logdash_activity_log
-                WHERE user_caps <> ''
+                FROM {$log_table}
+                WHERE user_caps <> '' AND site_id = {$site_id} 
                 GROUP BY user_caps ORDER BY user_caps ASC;";
 
 			$caps_results = $wpdb->get_results( $caps_query );
@@ -387,7 +396,7 @@ HTML;
 
 			<?php
 
-			$users_query = "SELECT user_id FROM {$wpdb->prefix}logdash_activity_log WHERE user_id > 0 GROUP BY user_id ORDER BY user_id ASC;";
+			$users_query = "SELECT user_id FROM {$log_table} WHERE user_id > 0 AND site_id = {$site_id} GROUP BY user_id ORDER BY user_id ASC;";
 
 			$users_result = $wpdb->get_results( $users_query );
 
@@ -407,7 +416,9 @@ HTML;
 			$type_query = "SELECT
                                 object_subtype
                             FROM
-                                {$wpdb->prefix}logdash_activity_log
+                                {$log_table}
+                            WHERE 
+                                site_id = {$site_id}
                             GROUP BY
                                 object_subtype
                             ORDER BY
@@ -435,7 +446,9 @@ HTML;
 			$action_query = "SELECT
                                 event_type
                             FROM
-                                {$wpdb->prefix}logdash_activity_log
+                                {$log_table}
+                            WHERE
+                                site_id = {$site_id}
                             GROUP BY
                                 event_type
                             ORDER BY

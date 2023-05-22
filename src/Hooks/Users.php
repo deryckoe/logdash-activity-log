@@ -2,6 +2,7 @@
 
 namespace LogDash\Hooks;
 
+use LogDash\API\DB;
 use LogDash\API\EventMeta;
 use LogDash\EventCodes;
 use LogDash\EventTypes;
@@ -179,8 +180,11 @@ class Users extends HooksBase {
 
 		global $wpdb;
 
-		$user_query = "SELECT log.ID FROM {$wpdb->prefix}logdash_activity_log AS log 
-						LEFT JOIN {$wpdb->prefix}logdash_activity_meta AS meta ON meta.event_id = log.ID 
+		$log_table = DB::log_table();
+		$meta_table = DB::meta_table();
+
+		$user_query = "SELECT log.ID FROM {$log_table} AS log 
+						LEFT JOIN {$meta_table} AS meta ON meta.event_id = log.ID 
 						WHERE log.event_type = '{$failed_login}' 
 					    AND meta.name = 'userLogin'
 						AND meta.value = '{$user_login}'
@@ -192,19 +196,19 @@ class Users extends HooksBase {
 
 		if ( $event_id ) {
 
-			$attempts = $wpdb->get_var( "SELECT value FROM {$wpdb->prefix}logdash_activity_meta WHERE event_id = {$event_id} and name = 'attempts';" );
+			$attempts = $wpdb->get_var( "SELECT value FROM {$meta_table} WHERE event_id = {$event_id} and name = 'attempts';" );
 
 			if ( ! is_null( $attempts ) ) {
 
-				$result = $wpdb->update( $wpdb->prefix . 'logdash_activity_meta', [
+				$result = $wpdb->update( $meta_table, [
 					'value' => (int) $attempts + 1,
 				], [ 'event_id' => $event_id, 'name' => 'attempts' ] );
 
-				$result = $wpdb->update( $wpdb->prefix . 'logdash_activity_meta', [
+				$result = $wpdb->update( $meta_table, [
 					'value' => $attempt_last_date,
 				], [ 'event_id' => $event_id, 'name' => 'attemptsLastDate' ] );
 
-				$result = $wpdb->update( $wpdb->prefix . 'logdash_activity_meta', [
+				$result = $wpdb->update( $meta_table, [
 					'value' => $errors,
 				], [ 'event_id' => $event_id, 'name' => 'attemptsLastError' ] );
 			}

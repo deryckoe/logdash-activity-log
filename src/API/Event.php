@@ -20,7 +20,7 @@ class Event {
 
 		$site_id = get_current_blog_id();
 		$user_ip = $this->user_ip();
-		$table   = $wpdb->prefix . 'logdash_activity_log';
+		$log_table   = DB::log_table();
 
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -29,7 +29,7 @@ class Event {
 			$user_agent = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] ) ?? '';
 		}
 
-		$wpdb->insert( $table,
+		$wpdb->insert( $log_table,
 			[
 				'site_id'        => $site_id,
 				'event_type'     => $event_type,
@@ -55,7 +55,7 @@ class Event {
 
 		global $wpdb;
 
-		$table     = $wpdb->prefix . 'logdash_activity_meta';
+		$meta_table     = DB::meta_table();
 		$query_ids = [];
 
 		foreach ( $events as $event ) {
@@ -75,7 +75,7 @@ class Event {
 				$value = $event->value;
 			}
 
-			$id = $wpdb->insert( $table,
+			$id = $wpdb->insert( $meta_table,
 				[
 					'event_id' => $this->event_id,
 					'name'     => $event->name,
@@ -97,13 +97,13 @@ class Event {
 
 		global $wpdb;
 
-		$table = $wpdb->prefix . 'logdash_activity_meta';
+		$meta_table = DB::meta_table();
 
 		if ( is_object( $value ) || is_array( $value ) ) {
 			$value = json_encode( $value );
 		}
 
-		$wpdb->insert( $table,
+		$wpdb->insert( $meta_table,
 			[
 				'event_id' => $this->event_id,
 				'name'     => $name,
@@ -118,7 +118,9 @@ class Event {
 	public function is_last_event( int $event_code, int $object_id = 0 ): bool {
 		global $wpdb;
 
-		$last_event = "SELECT ID, event_code, object_id FROM {$wpdb->prefix}logdash_activity_log ORDER BY created DESC LIMIT 1;";
+		$log_table = DB::log_table();
+
+		$last_event = "SELECT ID, event_code, object_id FROM {$log_table} ORDER BY created DESC LIMIT 1;";
 		$result     = $wpdb->get_results( $last_event, ARRAY_A );
 
 		return ( (int) $result[0]['event_code'] === $event_code && (int) $result[0]['object_id'] === $object_id );
@@ -165,9 +167,9 @@ class Event {
 	public function save_ip_details( $ip ) {
 		global $wpdb;
 
-		$table = $wpdb->prefix . 'logdash_ip_info';
+		$ip_table = DB::ip_table();
 
-		$check_ip_query = "SELECT ID FROM $table WHERE ip = '$ip'";
+		$check_ip_query = "SELECT ID FROM $ip_table WHERE ip = '$ip'";
 
 		$have_ip = $wpdb->get_results( $check_ip_query );
 
@@ -212,7 +214,7 @@ class Event {
 
 		$format = [ '%s', '%s', '%s', '%s', '%s', '%s', '%s' ];
 
-		$wpdb->insert( $table, $ip_info, $format );
+		$wpdb->insert( $ip_table, $ip_info, $format );
 		echo $wpdb->last_error;
 	}
 

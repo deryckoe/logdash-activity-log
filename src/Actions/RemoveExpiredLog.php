@@ -3,6 +3,7 @@
 namespace LogDash\Actions;
 
 use LogDash\Admin\Settings;
+use LogDash\API\DB;
 
 class RemoveExpiredLog {
 	private static ?RemoveExpiredLog $instance = null;
@@ -38,13 +39,14 @@ class RemoveExpiredLog {
 		}
 
 		$days          = $options['logs_lifespan'];
-		$activity_log  = $this->wpdb->prefix . 'logdash_activity_log';
-		$activity_meta = $this->wpdb->prefix . 'logdash_activity_meta';
+		$activity_log  = DB::log_table();
+		$activity_meta = DB::meta_table();
+		$site_id = get_current_blog_id();
 
 		$this->wpdb->query( "DELETE l FROM $activity_log l
 						       LEFT JOIN $activity_meta m
 						         ON l.ID = m.event_id
-						       WHERE FROM_UNIXTIME(l.created, '%Y-%m-%d') < DATE_SUB(CURRENT_DATE, INTERVAL $days DAY);" );
+						       WHERE FROM_UNIXTIME(l.created, '%Y-%m-%d') < DATE_SUB(CURRENT_DATE, INTERVAL {$days} DAY) AND site_id = {$site_id};" );
 
 		$rows_affected = $this->wpdb->rows_affected;
 
