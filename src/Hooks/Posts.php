@@ -431,6 +431,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -441,6 +442,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -457,6 +459,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -472,6 +475,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] )
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -492,6 +496,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] )
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -503,6 +508,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postStatus'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -515,6 +521,7 @@ class Posts extends HooksBase {
 					new After( $meta_data['postNewVisibility'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -529,6 +536,7 @@ class Posts extends HooksBase {
 					new After( $meta_data['postNewTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -543,6 +551,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -557,6 +566,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -571,6 +581,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details   = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -593,6 +604,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -607,6 +619,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -620,6 +633,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postPublishingDate'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -632,6 +646,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details   = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -652,6 +667,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postNewTemplate'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
@@ -666,6 +682,7 @@ class Posts extends HooksBase {
 					new Label( $meta_data['postTitle'] ),
 				];
 				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 					new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
 					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),

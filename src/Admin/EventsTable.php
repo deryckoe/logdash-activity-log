@@ -140,6 +140,9 @@ class EventsTable extends \WP_List_Table {
 			$where       .= $wpdb->prepare( " AND event_type = %s ", $action_show );
 		}
 
+		$site_id = get_current_blog_id();
+		$where.= $wpdb->prepare(" AND site_id = %d", $site_id );
+
 		return $where;
 	}
 
@@ -159,7 +162,6 @@ class EventsTable extends \WP_List_Table {
 		$wpdb_table = $wpdb->prefix . 'logdash_activity_log';
 		$orderby    = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
 		$order      = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
-		$where      = $this->apply_where_filter();
 
 		$per_page     = $this->get_pagination_arg( 'per_page' );
 		$current_page = ( $this->get_pagenum() - 1 ) * $per_page;

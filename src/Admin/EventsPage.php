@@ -42,7 +42,10 @@ class EventsPage {
 	public function submenu_item_replacement() {
 		global $submenu;
 
-		$submenu['logdash_activity_log'][0][0] = __( 'Activity Log', LOGDASH_DOMAIN );
+		if ( isset( $submenu['logdash_activity_log'] ) ) {
+			$submenu['logdash_activity_log'][0][0] = __( 'Activity Log', LOGDASH_DOMAIN );
+		}
+
 	}
 
 	function display_events_page() {

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LogDash Activity Log\n"
-"POT-Creation-Date: 2023-05-15 21:17-0400\n"
+"POT-Creation-Date: 2023-05-22 11:27-0400\n"
 "PO-Revision-Date: 2023-04-14 13:02-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -639,7 +639,7 @@ msgid "New version"
 msgstr ""
 
 #: src/Hooks/Core.php:87 src/Hooks/Files.php:190 src/Hooks/Meta.php:191
-#: src/Hooks/Plugins.php:211 src/Hooks/Posts.php:685 src/Hooks/Settings.php:249
+#: src/Hooks/Plugins.php:211 src/Hooks/Posts.php:702 src/Hooks/Settings.php:249
 #: src/Hooks/Taxonomies.php:203 src/Hooks/Themes.php:184
 #: src/Hooks/Users.php:414
 msgid "User Agent"
@@ -689,32 +689,32 @@ msgstr ""
 msgid "Edit "
 msgstr ""
 
-#: src/Hooks/Meta.php:149 src/Hooks/Posts.php:434 src/Hooks/Posts.php:444
-#: src/Hooks/Posts.php:460 src/Hooks/Posts.php:475 src/Hooks/Posts.php:495
-#: src/Hooks/Posts.php:506 src/Hooks/Posts.php:518 src/Hooks/Posts.php:532
-#: src/Hooks/Posts.php:546 src/Hooks/Posts.php:560 src/Hooks/Posts.php:574
-#: src/Hooks/Posts.php:596 src/Hooks/Posts.php:610 src/Hooks/Posts.php:623
-#: src/Hooks/Posts.php:635 src/Hooks/Posts.php:655 src/Hooks/Posts.php:669
+#: src/Hooks/Meta.php:149 src/Hooks/Posts.php:435 src/Hooks/Posts.php:446
+#: src/Hooks/Posts.php:463 src/Hooks/Posts.php:479 src/Hooks/Posts.php:500
+#: src/Hooks/Posts.php:512 src/Hooks/Posts.php:525 src/Hooks/Posts.php:540
+#: src/Hooks/Posts.php:555 src/Hooks/Posts.php:570 src/Hooks/Posts.php:585
+#: src/Hooks/Posts.php:608 src/Hooks/Posts.php:623 src/Hooks/Posts.php:637
+#: src/Hooks/Posts.php:650 src/Hooks/Posts.php:671 src/Hooks/Posts.php:686
 msgid "Post title"
 msgstr ""
 
-#: src/Hooks/Meta.php:150 src/Hooks/Posts.php:436 src/Hooks/Posts.php:446
-#: src/Hooks/Posts.php:462 src/Hooks/Posts.php:477 src/Hooks/Posts.php:497
-#: src/Hooks/Posts.php:508 src/Hooks/Posts.php:520 src/Hooks/Posts.php:521
-#: src/Hooks/Posts.php:522 src/Hooks/Posts.php:534 src/Hooks/Posts.php:535
-#: src/Hooks/Posts.php:536 src/Hooks/Posts.php:548 src/Hooks/Posts.php:562
-#: src/Hooks/Posts.php:576 src/Hooks/Posts.php:598 src/Hooks/Posts.php:612
-#: src/Hooks/Posts.php:625 src/Hooks/Posts.php:637 src/Hooks/Posts.php:657
-#: src/Hooks/Posts.php:671
+#: src/Hooks/Meta.php:150 src/Hooks/Posts.php:437 src/Hooks/Posts.php:448
+#: src/Hooks/Posts.php:465 src/Hooks/Posts.php:481 src/Hooks/Posts.php:502
+#: src/Hooks/Posts.php:514 src/Hooks/Posts.php:527 src/Hooks/Posts.php:528
+#: src/Hooks/Posts.php:529 src/Hooks/Posts.php:542 src/Hooks/Posts.php:543
+#: src/Hooks/Posts.php:544 src/Hooks/Posts.php:557 src/Hooks/Posts.php:572
+#: src/Hooks/Posts.php:587 src/Hooks/Posts.php:610 src/Hooks/Posts.php:625
+#: src/Hooks/Posts.php:639 src/Hooks/Posts.php:652 src/Hooks/Posts.php:673
+#: src/Hooks/Posts.php:688
 msgid "Post type"
 msgstr ""
 
-#: src/Hooks/Meta.php:151 src/Hooks/Posts.php:435 src/Hooks/Posts.php:445
-#: src/Hooks/Posts.php:461 src/Hooks/Posts.php:476 src/Hooks/Posts.php:496
-#: src/Hooks/Posts.php:507 src/Hooks/Posts.php:519 src/Hooks/Posts.php:533
-#: src/Hooks/Posts.php:547 src/Hooks/Posts.php:561 src/Hooks/Posts.php:575
-#: src/Hooks/Posts.php:597 src/Hooks/Posts.php:611 src/Hooks/Posts.php:624
-#: src/Hooks/Posts.php:636 src/Hooks/Posts.php:656 src/Hooks/Posts.php:670
+#: src/Hooks/Meta.php:151 src/Hooks/Posts.php:436 src/Hooks/Posts.php:447
+#: src/Hooks/Posts.php:464 src/Hooks/Posts.php:480 src/Hooks/Posts.php:501
+#: src/Hooks/Posts.php:513 src/Hooks/Posts.php:526 src/Hooks/Posts.php:541
+#: src/Hooks/Posts.php:556 src/Hooks/Posts.php:571 src/Hooks/Posts.php:586
+#: src/Hooks/Posts.php:609 src/Hooks/Posts.php:624 src/Hooks/Posts.php:638
+#: src/Hooks/Posts.php:651 src/Hooks/Posts.php:672 src/Hooks/Posts.php:687
 msgid "Post status"
 msgstr ""
 
@@ -756,135 +756,144 @@ msgstr ""
 msgid "Differences"
 msgstr ""
 
-#: src/Hooks/Posts.php:447
+#: src/Hooks/Posts.php:434 src/Hooks/Posts.php:445 src/Hooks/Posts.php:462
+#: src/Hooks/Posts.php:478 src/Hooks/Posts.php:499 src/Hooks/Posts.php:511
+#: src/Hooks/Posts.php:524 src/Hooks/Posts.php:539 src/Hooks/Posts.php:554
+#: src/Hooks/Posts.php:569 src/Hooks/Posts.php:584 src/Hooks/Posts.php:607
+#: src/Hooks/Posts.php:622 src/Hooks/Posts.php:636 src/Hooks/Posts.php:649
+#: src/Hooks/Posts.php:670 src/Hooks/Posts.php:685
+msgid "Post ID"
+msgstr ""
+
+#: src/Hooks/Posts.php:449
 msgid "Old user"
 msgstr ""
 
-#: src/Hooks/Posts.php:448
+#: src/Hooks/Posts.php:450
 msgid "New user"
 msgstr ""
 
-#: src/Hooks/Posts.php:463 src/Hooks/Taxonomies.php:194
+#: src/Hooks/Posts.php:466 src/Hooks/Taxonomies.php:194
 msgid "Term name"
 msgstr ""
 
-#: src/Hooks/Posts.php:464
+#: src/Hooks/Posts.php:467
 msgid "Old values"
 msgstr ""
 
-#: src/Hooks/Posts.php:465
+#: src/Hooks/Posts.php:468
 msgid "New values"
 msgstr ""
 
-#: src/Hooks/Posts.php:478
+#: src/Hooks/Posts.php:482
 msgid "Post date"
 msgstr ""
 
-#: src/Hooks/Posts.php:479
+#: src/Hooks/Posts.php:483
 msgid "Post url"
 msgstr ""
 
-#: src/Hooks/Posts.php:549
+#: src/Hooks/Posts.php:558
 msgid "Old excerpt"
 msgstr ""
 
-#: src/Hooks/Posts.php:550
+#: src/Hooks/Posts.php:559
 msgid "New excerpt"
 msgstr ""
 
-#: src/Hooks/Posts.php:563 src/Hooks/Taxonomies.php:178
+#: src/Hooks/Posts.php:573 src/Hooks/Taxonomies.php:178
 msgid "Old slug"
 msgstr ""
 
-#: src/Hooks/Posts.php:564 src/Hooks/Taxonomies.php:179
+#: src/Hooks/Posts.php:574 src/Hooks/Taxonomies.php:179
 msgid "New slug"
 msgstr ""
 
-#: src/Hooks/Posts.php:577
+#: src/Hooks/Posts.php:588
 msgid "Old ID"
 msgstr ""
 
-#: src/Hooks/Posts.php:578
+#: src/Hooks/Posts.php:589
 msgid "New ID"
 msgstr ""
 
-#: src/Hooks/Posts.php:579
+#: src/Hooks/Posts.php:590
 msgid "Old Author"
 msgstr ""
 
-#: src/Hooks/Posts.php:580
+#: src/Hooks/Posts.php:591
 msgid "New Author"
 msgstr ""
 
-#: src/Hooks/Posts.php:585
+#: src/Hooks/Posts.php:596
 msgid "Edit author profile"
 msgstr ""
 
-#: src/Hooks/Posts.php:599
+#: src/Hooks/Posts.php:611
 msgid "Old Thumbnail"
 msgstr ""
 
-#: src/Hooks/Posts.php:600
+#: src/Hooks/Posts.php:612
 msgid "New Thumbnail"
 msgstr ""
 
-#: src/Hooks/Posts.php:613
+#: src/Hooks/Posts.php:626
 msgid "Old Date"
 msgstr ""
 
-#: src/Hooks/Posts.php:614
+#: src/Hooks/Posts.php:627
 msgid "New Date"
 msgstr ""
 
-#: src/Hooks/Posts.php:626
+#: src/Hooks/Posts.php:640
 msgid "Publishing Date"
 msgstr ""
 
-#: src/Hooks/Posts.php:638
+#: src/Hooks/Posts.php:653
 msgid "Old Parent Link"
 msgstr ""
 
-#: src/Hooks/Posts.php:639
+#: src/Hooks/Posts.php:654
 msgid "New Parent Link"
 msgstr ""
 
-#: src/Hooks/Posts.php:640
+#: src/Hooks/Posts.php:655
 msgid "Old Parent Title"
 msgstr ""
 
-#: src/Hooks/Posts.php:641
+#: src/Hooks/Posts.php:656
 msgid "New Parent Title"
 msgstr ""
 
-#: src/Hooks/Posts.php:646
+#: src/Hooks/Posts.php:661
 msgid "Edit parent"
 msgstr ""
 
-#: src/Hooks/Posts.php:658
+#: src/Hooks/Posts.php:674
 msgid "Old Template"
 msgstr ""
 
-#: src/Hooks/Posts.php:659
+#: src/Hooks/Posts.php:675
 msgid "New Template"
 msgstr ""
 
-#: src/Hooks/Posts.php:672
+#: src/Hooks/Posts.php:689
 msgid "Old Menu order"
 msgstr ""
 
-#: src/Hooks/Posts.php:673
+#: src/Hooks/Posts.php:690
 msgid "New Menu order"
 msgstr ""
 
-#: src/Hooks/Posts.php:894 src/Hooks/Posts.php:902
+#: src/Hooks/Posts.php:911 src/Hooks/Posts.php:919
 msgid "Password Protected"
 msgstr ""
 
-#: src/Hooks/Posts.php:896 src/Hooks/Posts.php:904
+#: src/Hooks/Posts.php:913 src/Hooks/Posts.php:921
 msgid "Private"
 msgstr ""
 
-#: src/Hooks/Posts.php:898 src/Hooks/Posts.php:906
+#: src/Hooks/Posts.php:915 src/Hooks/Posts.php:923
 msgid "Public"
 msgstr ""
 
