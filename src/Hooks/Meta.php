@@ -146,6 +146,7 @@ class Meta extends HooksBase {
 			$actions = [];
 		}
 		$details = [
+			new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
 			new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
 			new Specification( __( 'Post type', LOGDASH_DOMAIN ), $meta_data['postType'] ),
 			new Specification( __( 'Post status', LOGDASH_DOMAIN ), $meta_data['postStatus'] ),
