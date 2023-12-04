@@ -180,16 +180,17 @@ class Users extends HooksBase {
 
 		global $wpdb;
 
-		$log_table = DB::log_table();
+		$log_table  = DB::log_table();
 		$meta_table = DB::meta_table();
 
-		$user_query = "SELECT log.ID FROM {$log_table} AS log 
-						LEFT JOIN {$meta_table} AS meta ON meta.event_id = log.ID 
-						WHERE log.event_type = '{$failed_login}' 
-					    AND meta.name = 'userLogin'
-						AND meta.value = '{$user_login}'
-						AND FROM_UNIXTIME(created, '%Y-%m-%d') = CURRENT_DATE() 
-						ORDER BY log.ID DESC LIMIT 1;";
+		$user_query = $wpdb->prepare( "SELECT log.ID FROM {$log_table} AS log
+                               LEFT JOIN {$meta_table} AS meta ON meta.event_id = log.ID
+                               WHERE log.event_type = %s
+                               AND meta.name = 'userLogin'
+                               AND meta.value = %s
+                               AND FROM_UNIXTIME(created, '%%Y-%%m-%%d') = CURRENT_DATE()
+                               ORDER BY log.ID DESC LIMIT 1;",
+			$failed_login, $user_login );
 
 		$event_id = $wpdb->get_var( $user_query );
 
@@ -216,7 +217,6 @@ class Users extends HooksBase {
 		} else {
 
 			if ( false === $user ) {
-
 				$this->event
 					->insert( EventTypes::FAILED_LOGIN, EventCodes::USER_LOGIN_FAIL, self::$object_type, self::$object_type, 0, 0, null )
 					->attachMany( [
@@ -260,13 +260,16 @@ class Users extends HooksBase {
 			return;
 		}
 
+		if ( is_int( $meta_value ) ) {
+			$meta_value = (string) $meta_value;
+		}
 
 		$this->event
 			->insert( EventTypes::MODIFIED, EventCodes::USER_UPDATED_META, self::$object_type, self::$object_type, $user_id, $current_user->ID, $current_user_role )
 			->attachMany( [
 				new EventMeta( 'fieldName', $meta_key ),
 				new EventMeta( 'oldValue', $this->old_meta[ $meta_key ] ),
-				new EventMeta( 'newValue', $meta_value ),
+				new EventMeta( 'newValue',  $meta_value ),
 				new EventMeta( 'userLogin', $event_user->user_login ),
 				new EventMeta( 'firstName', $event_user->first_name ),
 				new EventMeta( 'lastName', $event_user->last_name ),

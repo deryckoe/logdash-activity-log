@@ -3,7 +3,7 @@ Contributors: deryck
 Donate link: https://www.paypal.com/donate/?hosted_button_id=XHK37YBVVMP58
 Tags: Activity Log, User Activity, User Log, Audit Log, Security, Tracking, WooCommerce, bbPress, GDPR,
 Requires at least: 5.9.5
-Tested up to: 6.2
+Tested up to: 6.4.1
 Requires PHP: 7.4
 Stable tag: 1.1.3
 License: GPLv2 or later
@@ -74,6 +74,10 @@ LogDash has been developed with performance in mind. However, it should be consi
 The only limitation is the database size restrictions that your hosting plan may have. However, to avoid reaching that possible limit, you can specify the days you want to keep the log entries.
 
 == Changelog ==
+
+= 1.1.4 =
+* Addressed a security issue in the login failure process, preventing a potential exploit that could harm the website. This fix significantly enhances the overall safety and reliability of the plugin.
+* Fixed some minor bugs that generated warnings in the logs.
 
 = 1.1.3 =
 * Performance improved while deleting old events
