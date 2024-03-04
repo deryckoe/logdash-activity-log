@@ -12,5 +12,10 @@
             "name": "deryck",
             "email": "hello@deryckoe.com"
         }
-    ]
+    ],
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        }
+    }
 }

@@ -23,7 +23,7 @@ class EventsTable extends \WP_List_Table {
 	 */
 	private $table_data;
 
-	private $table_data_count;
+	private int $table_data_count;
 
 	public function get_columns(): array {
 
@@ -143,7 +143,7 @@ class EventsTable extends \WP_List_Table {
 		}
 
 		$site_id = get_current_blog_id();
-		$where.= $wpdb->prepare(" AND site_id = %d", $site_id );
+		$where   .= $wpdb->prepare( " AND site_id = %d", $site_id );
 
 		return $where;
 	}
@@ -151,32 +151,39 @@ class EventsTable extends \WP_List_Table {
 	public function fetch_table_data_count() {
 		global $wpdb;
 
-		$log_table = DB::log_table();
+		$where_condition = $this->apply_where_filter();
 
-		$query = "SELECT COUNT(*) as AGGREGATE FROM $log_table {$this->apply_where_filter()}";
+		$query = $wpdb->prepare( "SELECT COUNT(*) as AGGREGATE FROM %i " . $where_condition, DB::log_table() );
 
-		return $wpdb->get_var( $query );
-
+		return (int) $wpdb->get_var( $query );
 	}
+
 
 	public function fetch_table_data_paginated() {
 
 		global $wpdb;
-		$log_table = DB::log_table();
+		$log_table  = DB::log_table();
 		$meta_table = DB::meta_table();
 
-		$orderby    = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
-		$order      = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
+		$orderby = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
+		$order   = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
 
 		$per_page     = $this->get_pagination_arg( 'per_page' );
 		$current_page = ( $this->get_pagenum() - 1 ) * $per_page;
 
-		$event_query = "SELECT 
+        $where_filter = $this->apply_where_filter();
+
+		$event_query = $wpdb->prepare( "SELECT 
                             ID, event_type, event_code, object_type, object_subtype, object_id, user_id, user_caps, user_ip, user_agent, created
-                        FROM 
-                            $log_table {$this->apply_where_filter()} 
-                        ORDER BY $orderby $order 
-                        LIMIT $current_page, $per_page";
+                            FROM %i $where_filter  
+                            ORDER BY %s %s
+                            LIMIT %d, %d",
+			$log_table,
+			$orderby,
+			$order,
+			$current_page,
+			$per_page
+		);
 
 		// query output_type will be an associative array with ARRAY_A.
 		$query_results = $wpdb->get_results( $event_query, ARRAY_A );
@@ -187,11 +194,11 @@ class EventsTable extends \WP_List_Table {
 
 		$ids = implode( ',', array_column( $query_results, 'ID' ) );
 
-		$events_meta = "SELECT
+		$events_meta = $wpdb->prepare( "SELECT
 	                        ID, event_id, name, value
                         FROM
-	                        {$meta_table}
-                        WHERE event_id IN ($ids)";
+	                        %i
+                        WHERE event_id IN ($ids)", [ $meta_table ] );
 
 		$meta = $wpdb->get_results( $events_meta, ARRAY_A );
 
@@ -346,9 +353,9 @@ HTML;
 	protected function extra_tablenav( $which ) {
 		global $wpdb;
 
-		$log_table = DB::log_table();
+		$log_table  = DB::log_table();
 		$meta_table = DB::meta_table();
-		$site_id = get_current_blog_id();
+		$site_id    = get_current_blog_id();
 
 		if ( $which === 'top' ) :
 
@@ -366,12 +373,12 @@ HTML;
 			$selected_date_show = isset( $_GET['dateshow'] ) ? sanitize_text_field( $_GET['dateshow'] ) : '';
 
 			?>
-			<select name="dateshow" id="temp-1">
+            <select name="dateshow" id="temp-1">
 				<?php foreach ( $date_show as $value => $label ) : ?>
-					<option
-						value="<?php echo esc_attr( $value ) ?>" <?php selected( esc_attr( $selected_date_show ), esc_attr( $value ) ) ?>><?php echo esc_html( $label ) ?></option>
+                    <option
+                            value="<?php echo esc_attr( $value ) ?>" <?php selected( esc_attr( $selected_date_show ), esc_attr( $value ) ) ?>><?php echo esc_html( $label ) ?></option>
 				<?php endforeach; ?>
-			</select>
+            </select>
 
 			<?php
 
@@ -386,13 +393,13 @@ HTML;
 
 			?>
 
-			<select name="capshow" id="temp-2">
-				<option value=""><?php esc_attr_e( 'All Roles', LOGDASH_DOMAIN ) ?></option>
+            <select name="capshow" id="temp-2">
+                <option value=""><?php esc_attr_e( 'All Roles', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $caps_results as $cap ) : ?>
-					<option
-						value="<?php echo esc_attr( $cap->user_caps ) ?>" <?php selected( esc_attr( $selected_cap ), esc_attr( $cap->user_caps ) ) ?>><?php echo translate_user_role( ucfirst( esc_html( $cap->user_caps ) ) ) ?></option>
+                    <option
+                            value="<?php echo esc_attr( $cap->user_caps ) ?>" <?php selected( esc_attr( $selected_cap ), esc_attr( $cap->user_caps ) ) ?>><?php echo translate_user_role( ucfirst( esc_html( $cap->user_caps ) ) ) ?></option>
 				<?php endforeach; ?>
-			</select>
+            </select>
 
 			<?php
 
@@ -403,14 +410,14 @@ HTML;
 			$selected_user = isset( $_GET['usershow'] ) ? sanitize_text_field( $_GET['usershow'] ) : '';
 
 			?>
-			<select name="usershow" id="temp-3">
-				<option value=""><?php _e( 'All Users', LOGDASH_DOMAIN ); ?></option>
+            <select name="usershow" id="temp-3">
+                <option value=""><?php _e( 'All Users', LOGDASH_DOMAIN ); ?></option>
 				<?php foreach ( $users_result as $user ) : ?>
 					<?php $user_data = get_user_by( 'ID', $user->user_id ); ?>
-					<option
-						value="<?php echo esc_attr( $user->user_id ) ?>" <?php selected( esc_attr( $selected_user ), esc_attr( $user->user_id ) ) ?>><?php echo esc_html( $user_data->user_login ) ?></option>
+                    <option
+                            value="<?php echo esc_attr( $user->user_id ) ?>" <?php selected( esc_attr( $selected_user ), esc_attr( $user->user_id ) ) ?>><?php echo esc_html( $user_data->user_login ) ?></option>
 				<?php endforeach; ?>
-			</select>
+            </select>
 			<?php
 
 			$type_query = "SELECT
@@ -429,17 +436,17 @@ HTML;
 			$selected_type = isset( $_GET['subtypeshow'] ) ? sanitize_text_field( $_GET['subtypeshow'] ) : '';
 
 			?>
-			<select name="subtypeshow" id="temp-4">
-				<option value=""><?php _e( 'All Contexts', LOGDASH_DOMAIN ) ?></option>
+            <select name="subtypeshow" id="temp-4">
+                <option value=""><?php _e( 'All Contexts', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $type_result as $type ) :
 					?>
-					<option value="<?php echo esc_attr( $type->object_subtype )
+                    <option value="<?php echo esc_attr( $type->object_subtype )
 					?>" <?php selected( esc_attr( $selected_type ), esc_attr( $type->object_subtype ) )
 					?>><?php echo ucfirst( esc_html( $type->object_subtype ) )
 						?></option>
 				<?php endforeach;
 				?>
-			</select>
+            </select>
 
 			<?php
 
@@ -459,22 +466,22 @@ HTML;
 			$selected_type = isset( $_GET['actionshow'] ) ? sanitize_text_field( $_GET['actionshow'] ) : '';
 
 			?>
-			<select name="actionshow" id="temp-5">
-				<option value=""><?php _e( 'All Actions', LOGDASH_DOMAIN ) ?></option>
+            <select name="actionshow" id="temp-5">
+                <option value=""><?php _e( 'All Actions', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $action_result as $action ) : ?>
-					<option
-						value="<?php echo( esc_attr( $action->event_type ) ) ?>" <?php selected( esc_attr( $selected_type ), esc_attr( $action->event_type ) ) ?>><?php echo ucfirst( esc_html( $action->event_type ) ) ?></option>
+                    <option
+                            value="<?php echo( esc_attr( $action->event_type ) ) ?>" <?php selected( esc_attr( $selected_type ), esc_attr( $action->event_type ) ) ?>><?php echo ucfirst( esc_html( $action->event_type ) ) ?></option>
 				<?php endforeach; ?>
-			</select>
+            </select>
 
-			<input type="submit" name="filter" id="submit-13ert" class="button" value="Filter">
+            <input type="submit" name="filter" id="submit-13ert" class="button" value="Filter">
 			<?php
 
 			foreach ( $filters as $filter ) {
 				if ( ! empty( $_GET[ $filter ] ) ) {
 					$page = sanitize_text_field( $_GET['page'] );
 					?> <a href="?page=<?php echo esc_html( $page ) ?>"
-					      style="margin-left: 5px;"><?php _e( 'Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
+                          style="margin-left: 5px;"><?php _e( 'Reset filter', LOGDASH_DOMAIN ) ?></a> <?php
 					break;
 				}
 			}

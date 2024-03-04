@@ -63,10 +63,10 @@ class ResetLog {
 		$queue = [
 			'meta' => $this->wpdb->prepare( "
 				DELETE meta 
-			    FROM {$meta_table} AS meta 
-			    LEFT JOIN {$log_table} AS log ON meta.event_id = log.ID 
-			    WHERE log.site_id = %d;", $site_id ),
-			'log' => $this->wpdb->prepare("DELETE FROM {$log_table} WHERE site_id = %d;", $site_id),
+			    FROM %i AS meta 
+			    LEFT JOIN %i AS log ON meta.event_id = log.ID 
+			    WHERE log.site_id = %d;", [$meta_table, $log_table, $site_id] ),
+			'log' => $this->wpdb->prepare("DELETE FROM %i WHERE site_id = %d;", [ $log_table, $site_id]),
 		];
 
 		foreach ( $queue as $task ) {
@@ -89,7 +89,7 @@ class ResetLog {
 	}
 
 	private function send_result( $response ) {
-		echo json_encode( $response );
+		echo wp_json_encode( $response );
 		wp_die();
 	}
 

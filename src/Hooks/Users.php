@@ -183,21 +183,28 @@ class Users extends HooksBase {
 		$log_table  = DB::log_table();
 		$meta_table = DB::meta_table();
 
+		$current_date = date( 'Y-m-d' );
+
 		$user_query = $wpdb->prepare( "SELECT log.ID FROM {$log_table} AS log
-                               LEFT JOIN {$meta_table} AS meta ON meta.event_id = log.ID
-                               WHERE log.event_type = %s
-                               AND meta.name = 'userLogin'
-                               AND meta.value = %s
-                               AND FROM_UNIXTIME(created, '%%Y-%%m-%%d') = CURRENT_DATE()
-                               ORDER BY log.ID DESC LIMIT 1;",
-			$failed_login, $user_login );
+                             LEFT JOIN {$meta_table} AS meta ON meta.event_id = log.ID
+                             WHERE log.event_type = %s
+                             AND meta.name = 'userLogin'
+                             AND meta.value = %s
+                             AND FROM_UNIXTIME(created, '%%Y-%%m-%%d') = %s
+                             ORDER BY log.ID DESC LIMIT 1;",
+			$failed_login,
+			$user_login,
+			$current_date );
 
 		$event_id = $wpdb->get_var( $user_query );
 
 
 		if ( $event_id ) {
 
-			$attempts = $wpdb->get_var( "SELECT value FROM {$meta_table} WHERE event_id = {$event_id} and name = 'attempts';" );
+			$attempts = $wpdb->get_var( $wpdb->prepare( "SELECT value FROM %i WHERE event_id = %d and name = 'attempts';", [
+				$meta_table,
+				$event_id
+			] ) );
 
 			if ( ! is_null( $attempts ) ) {
 
@@ -269,7 +276,7 @@ class Users extends HooksBase {
 			->attachMany( [
 				new EventMeta( 'fieldName', $meta_key ),
 				new EventMeta( 'oldValue', $this->old_meta[ $meta_key ] ),
-				new EventMeta( 'newValue',  $meta_value ),
+				new EventMeta( 'newValue', $meta_value ),
 				new EventMeta( 'userLogin', $event_user->user_login ),
 				new EventMeta( 'firstName', $event_user->first_name ),
 				new EventMeta( 'lastName', $event_user->last_name ),
@@ -360,7 +367,7 @@ class Users extends HooksBase {
 				];
 
 				$format               = 'Y-m-d H:i:s';
-				$gmt_date             = date( $format, (int) $meta_data['attemptsLastDate'] );
+				$gmt_date             = gmdate( $format, (int) $meta_data['attemptsLastDate'] );
 				$date                 = get_date_from_gmt( $gmt_date, $format );
 				$time_diff            = human_time_diff( strtotime( $date ), current_time( 'U' ) );
 				$translated_time_diff = __( sprintf( '%s ago', $time_diff ) );
@@ -432,7 +439,11 @@ class Users extends HooksBase {
 	}
 
 	private function _roles( $value ) {
-		return implode( ', ', unserialize( $value ) );
+		if ( ! empty( $value ) ) {
+			return implode( ', ', unserialize( $value ) );
+		}
+
+		return '';
 
 	}
 

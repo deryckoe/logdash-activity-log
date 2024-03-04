@@ -82,7 +82,7 @@ class Settings {
 
 			$format         = 'Y-m-d H:i:s';
 			$display_format = 'M d, Y h:mA';
-			$gmt_date       = date( $format, (int) $deletion_stats['date'] );
+			$gmt_date       = gmdate( $format, (int) $deletion_stats['date'] );
 			$date           = get_date_from_gmt( $gmt_date, $display_format );
 
 			$extra_description = '<br>' . sprintf( __( '%s records were deleted on %s', LOGDASH_DOMAIN ), $deletion_stats['rows'], $date );

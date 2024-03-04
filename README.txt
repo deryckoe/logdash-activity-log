@@ -5,7 +5,7 @@ Tags: Activity Log, User Activity, User Log, Audit Log, Security, Tracking, WooC
 Requires at least: 5.9.5
 Tested up to: 6.4.1
 Requires PHP: 7.4
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

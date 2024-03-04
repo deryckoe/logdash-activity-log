@@ -18,9 +18,9 @@ class Event {
 
 		global $wpdb;
 
-		$site_id = get_current_blog_id();
-		$user_ip = $this->user_ip();
-		$log_table   = DB::log_table();
+		$site_id   = get_current_blog_id();
+		$user_ip   = $this->user_ip();
+		$log_table = DB::log_table();
 
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -55,8 +55,8 @@ class Event {
 
 		global $wpdb;
 
-		$meta_table     = DB::meta_table();
-		$query_ids = [];
+		$meta_table = DB::meta_table();
+		$query_ids  = [];
 
 		foreach ( $events as $event ) {
 			if ( ! $event instanceof EventMeta ) {
@@ -100,7 +100,7 @@ class Event {
 		$meta_table = DB::meta_table();
 
 		if ( is_object( $value ) || is_array( $value ) ) {
-			$value = json_encode( $value );
+			$value = wp_json_encode( $value );
 		}
 
 		$wpdb->insert( $meta_table,
@@ -120,8 +120,10 @@ class Event {
 
 		$log_table = DB::log_table();
 
-		$last_event = "SELECT ID, event_code, object_id FROM {$log_table} ORDER BY created DESC LIMIT 1;";
-		$result     = $wpdb->get_results( $last_event, ARRAY_A );
+		$result = $wpdb->get_results(
+			$wpdb->prepare( "SELECT ID, event_code, object_id FROM %i ORDER BY created DESC LIMIT 1", $log_table ),
+			ARRAY_A
+		);
 
 		return ( (int) $result[0]['event_code'] === $event_code && (int) $result[0]['object_id'] === $object_id );
 	}
@@ -168,10 +170,7 @@ class Event {
 		global $wpdb;
 
 		$ip_table = DB::ip_table();
-
-		$check_ip_query = "SELECT ID FROM $ip_table WHERE ip = '$ip'";
-
-		$have_ip = $wpdb->get_results( $check_ip_query );
+		$have_ip  = $wpdb->get_results( $wpdb->prepare( "SELECT ID FROM %i WHERE ip = %s", $ip_table, $ip ) );
 
 		if ( ! empty( $have_ip ) ) {
 			return;
