@@ -1,21 +1,6 @@
 const {render} = wp.element; //we are using wp.element here!
 import './index.scss'
 
-import IpDetails from "./IpDetails";
-
-document.querySelectorAll('td.user_ip').forEach(function (item) {
-    const linkItem = item.querySelector('.ip-info[data-ip]');
-    const infoWrapper = item.querySelector('.ip-info-wrapper');
-
-    if (linkItem !== null) {
-        const ip = linkItem.getAttribute('data-ip');
-
-        if (ip !== null) {
-            render(<IpDetails address={ip}/>, infoWrapper);
-        }
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     expandEventDetails();
     resetLog();

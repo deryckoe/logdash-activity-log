@@ -237,7 +237,7 @@ class EventsListTable extends \WP_List_Table {
 				if ( $item[ $column_name ] === '127.0.0.1' ) {
 					$ip = '<span class="ip-info">' . $item[ $column_name ] . '</span>';
 				} else {
-					$ip = '<a class="ip-info" href="https://whatismyipaddress.com/ip/' . $item[ $column_name ] . '" data-ip="' . $item[ $column_name ] . '">' . $item[ $column_name ] . '</a>';
+					$ip = '<a class="ip-info" target="_blank" href="https://whatismyipaddress.com/ip/' . $item[ $column_name ] . '" data-ip="' . $item[ $column_name ] . '">' . $item[ $column_name ] . '</a>';
 				}
 
 				return '<div class="ip-info-wrapper">' . $ip . '</div>';
