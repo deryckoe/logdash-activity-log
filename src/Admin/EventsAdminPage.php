@@ -2,11 +2,11 @@
 
 namespace LogDash\Admin;
 
-class EventsPage {
+class EventsAdminPage {
 
-	private static ?EventsPage $instance = null;
+	private static ?EventsAdminPage $instance = null;
 
-	public static function instance(): ?EventsPage {
+	public static function instance(): ?EventsAdminPage {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self;
 		}
@@ -22,7 +22,6 @@ class EventsPage {
 		add_action( 'admin_menu', [ $this, 'menu_item' ] );
 		add_action( 'admin_menu', [ $this, 'submenu_item_replacement' ], 90 );
 	}
-
 
 	public function menu_item() {
 
@@ -56,7 +55,7 @@ class EventsPage {
 		);
 		add_screen_option( 'per_page', $arguments );
 
-		$user_list_table = new EventsTable();
+		$user_list_table = new EventsListTable();
 		$user_list_table->prepare_items();
 
 		?>

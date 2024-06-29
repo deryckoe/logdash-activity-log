@@ -4,19 +4,14 @@
 
 namespace LogDash\Admin;
 
-use LogDash\API\Activation;
 use LogDash\API\DB;
 use LogDash\EventTypes;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class EventsTable extends \WP_List_Table {
+class EventsListTable extends \WP_List_Table {
 
 	/**
 	 * @var array|object|null
@@ -165,22 +160,21 @@ class EventsTable extends \WP_List_Table {
 		$log_table  = DB::log_table();
 		$meta_table = DB::meta_table();
 
-		$orderby = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'created';
+		$orderby = ( isset( $_GET['orderby'] ) ) ? sanitize_text_field( $_GET['orderby'] ) : 'ID';
 		$order   = ( isset( $_GET['order'] ) ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
 
 		$per_page     = $this->get_pagination_arg( 'per_page' );
 		$current_page = ( $this->get_pagenum() - 1 ) * $per_page;
 
-        $where_filter = $this->apply_where_filter();
+		$where_filter    = $this->apply_where_filter();
+		$order_by_string = sanitize_sql_orderby( $orderby . ' ' . $order );
 
 		$event_query = $wpdb->prepare( "SELECT 
                             ID, event_type, event_code, object_type, object_subtype, object_id, user_id, user_caps, user_ip, user_agent, created
                             FROM %i $where_filter  
-                            ORDER BY %s %s
+                            ORDER BY $order_by_string
                             LIMIT %d, %d",
 			$log_table,
-			$orderby,
-			$order,
 			$current_page,
 			$per_page
 		);
@@ -280,14 +274,16 @@ HTML;
 
 			case 'created':
 
-				$format               = 'Y-m-d H:i:s';
-				$gmt_date             = date( $format, (int) $item[ $column_name ] );
-				$date                 = get_date_from_gmt( $gmt_date, $format );
+				$timestamp = $item[ $column_name ];
+				$format    = 'Y-m-d H:i:s';
+				$gmt_date  = date( $format, (int) $timestamp );
+				$date      = get_date_from_gmt( $gmt_date, $format );
+
 				$time_diff            = human_time_diff( strtotime( $date ), current_time( 'U' ) );
 				$translated_time_diff = __( sprintf( '%s ago', $time_diff ) );
 
 				return date_i18n( 'F d, Y', $date ) . '<br>' .
-				       date_i18n( 'h:m:s a', $date ) . '<br>' .
+				       date( 'h:i:s a', $timestamp ) . '<br>' .
 				       $translated_time_diff;
 
 			case 'event_meta':

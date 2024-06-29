@@ -4,7 +4,7 @@ namespace LogDash;
 
 use LogDash\Actions\RemoveExpiredLog;
 use LogDash\Actions\ResetLog;
-use LogDash\Admin\EventsPage;
+use LogDash\Admin\EventsAdminPage;
 use LogDash\Admin\Settings;
 use LogDash\API\Activation;
 use LogDash\API\RestEndpoints;
@@ -39,7 +39,7 @@ class ActivityLog {
 
 		$dependencies = [
 			Activation::class,
-			EventsPage::class,
+			EventsAdminPage::class,
 			Settings::class,
 			ResetLog::class,
 			RemoveExpiredLog::class,

@@ -28,7 +28,7 @@ class RemoveExpiredLog {
 
 	public function actions() {
 
-//		add_action( 'init', [ $this, 'delete_expired_log' ] );
+		add_action( 'init', [ $this, 'delete_expired_log' ] );
 		add_action( 'init', [ $this, 'register_expired_log_job' ] );
 		add_action( 'delete_expired_log', [ $this, 'delete_expired_log' ] );
 	}
@@ -51,8 +51,15 @@ class RemoveExpiredLog {
 		$activity_meta = DB::meta_table();
 		$site_id       = get_current_blog_id();
 
-		$this->wpdb->query( "DELETE FROM $activity_log WHERE FROM_UNIXTIME(created, '%Y-%m-%d') < DATE_SUB(CURRENT_DATE, INTERVAL {$days} DAY) AND {$site_id} = 1;" );
-		$this->wpdb->query( "DELETE FROM $activity_meta WHERE NOT EXISTS ( SELECT 1 FROM $activity_log WHERE $activity_log.ID = $activity_meta.event_id);" );
+		$cutoff_date = strtotime('-' . $days . ' days');
+
+		$sql = "DELETE meta, log 
+       				FROM %i log
+					LEFT JOIN %i meta ON meta.event_id = log.ID
+					WHERE log.created < %d AND log.site_id = %d
+					";
+
+		$this->wpdb->query($this->wpdb->prepare($sql, $activity_log, $activity_meta, $cutoff_date, $site_id));
 
 		$rows_affected = $this->wpdb->rows_affected;
 
