@@ -5,16 +5,16 @@
  * @package           LogDash_Activity_Log
  *
  * @wordpress-plugin
- * Plugin Name:       LogDash Activity Log
- * Plugin URI:        https://deryckoe.com/logdash-activity-log
- * Description:       The ultimate solution for tracking activities and security issues on your WordPress site.
- * Version:           1.1.4
- * Author:            Deryck Oñate
- * Author URI:        http://deryckoe.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       logdash-activity-log
- * Domain Path:       /languages
+ * Plugin Name: LogDash Activity Log
+ * Plugin URI: https://deryckoe.com/logdash-activity-log
+ * Description: The ultimate solution for tracking activities and security issues on your WordPress site.
+ * Version: 1.1.5
+ * Author: Deryck Oñate
+ * Author URI: http://deryckoe.com
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: logdash-activity-log
+ * Domain Path: /languages
  */
 
 // If this file is called directly, abort.
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'LOGDASH_VERSION', '1.1.4' );
+define( 'LOGDASH_VERSION', '1.1.5' );
 
 /**
  * Plugin paths

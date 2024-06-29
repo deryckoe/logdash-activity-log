@@ -266,7 +266,7 @@ HTML;
                 <div style="display: flex; gap: 10px">
                     <div style="clip-path: circle(50%); overflow: hidden; display: flex; min-width: 40px;">$avatar</div>
                     <div class="text" style="display: flex; flex-direction: column;">
-                        <span><a href="$profile_link">$user->user_login</a></span>
+                        <span><a href="$profile_link" title="$user->user_email">$user->user_login</a></span>
                         <span style="font-size: 1em; margin: 0;">$role</span>
                     </div>
                 </div>

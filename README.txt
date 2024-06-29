@@ -3,9 +3,9 @@ Contributors: deryck
 Donate link: https://www.paypal.com/donate/?hosted_button_id=XHK37YBVVMP58
 Tags: Activity Log, User Activity, User Log, Audit Log, Security, Tracking, WooCommerce, bbPress, GDPR,
 Requires at least: 5.9.5
-Tested up to: 6.4.1
+Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 1.1.4
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,12 @@ The only limitation is the database size restrictions that your hosting plan may
 
 == Changelog ==
 
+= 1.1.5 =
+* Enhanced log rotation process for better performance.
+* Fixed issue that was overriding stored dates.
+* Removed IP info through API; now accessible via link.
+* Decluttered log records for improved readability.
+
 = 1.1.4 =
 * Addressed a security issue in the login failure process, preventing a potential exploit that could harm the website. This fix significantly enhances the overall safety and reliability of the plugin.
 * Fixed some minor bugs that generated warnings in the logs.
@@ -94,6 +100,16 @@ The only limitation is the database size restrictions that your hosting plan may
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.1.5 =
+* Enhanced log rotation process for better performance.
+* Fixed issue that was overriding stored dates.
+* Removed IP info through API; now accessible via link.
+* Decluttered log records for improved readability.
+
+= 1.1.4 =
+* Addressed a security issue in the login failure process, preventing a potential exploit that could harm the website. This fix significantly enhances the overall safety and reliability of the plugin.
+* Fixed some minor bugs that generated warnings in the logs.
 
 = 1.1.3 =
 * Performance improved while deleting old events

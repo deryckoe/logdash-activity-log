@@ -85,7 +85,11 @@ class Settings {
 			$gmt_date       = gmdate( $format, (int) $deletion_stats['date'] );
 			$date           = get_date_from_gmt( $gmt_date, $display_format );
 
-			$extra_description = '<br>' . sprintf( __( '%s records were deleted on %s', LOGDASH_DOMAIN ), $deletion_stats['rows'], $date );
+			$extra_description = ' ' . sprintf( __( '%s records were deleted on %s', LOGDASH_DOMAIN ), $deletion_stats['rows'], $date );
+
+			if ( ! empty( $deletion_stats['execution_time'] ) ) {
+				$extra_description .= ' ' . sprintf( __( 'and the execution time was %s', LOGDASH_DOMAIN ), $deletion_stats['execution_time'] );
+			}
 		} else {
 			$extra_description = '';
 		}

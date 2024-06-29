@@ -29,8 +29,8 @@ class Users extends HooksBase {
 		add_action( 'wp_login', [ $this, 'login' ], 10, 2 );
 		add_action( 'wp_logout', [ $this, 'logout' ] );
 		add_action( 'wp_login_failed', [ $this, 'login_failed' ], 10, 2 );
-		add_action( 'update_user_meta', [ $this, 'before_update_user_meta' ], 10, 4 );
-		add_action( 'updated_user_meta', [ $this, 'updated_user_meta' ], 10, 4 );
+//		add_action( 'update_user_meta', [ $this, 'before_update_user_meta' ], 10, 4 );
+//		add_action( 'updated_user_meta', [ $this, 'updated_user_meta' ], 10, 4 );
 		add_action( 'admin_init', array( $this, 'extra_actions' ) );
 		add_filter( 'logdash_manage_columns-' . self::$object_type . '-content_event_meta', [
 			$this,

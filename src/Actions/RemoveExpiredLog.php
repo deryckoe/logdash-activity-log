@@ -28,12 +28,12 @@ class RemoveExpiredLog {
 
 	public function actions() {
 
-		add_action( 'init', [ $this, 'delete_expired_log' ] );
+//		add_action( 'init', [ $this, 'delete_expired_log' ] );
 		add_action( 'init', [ $this, 'register_expired_log_job' ] );
 		add_action( 'delete_expired_log', [ $this, 'delete_expired_log' ] );
 	}
 
-	public function register_expired_log_job(  ) {
+	public function register_expired_log_job() {
 		if ( ! wp_next_scheduled( 'delete_expired_log' ) ) {
 			wp_schedule_single_event( time(), 'delete_expired_log' );
 		}
@@ -51,15 +51,25 @@ class RemoveExpiredLog {
 		$activity_meta = DB::meta_table();
 		$site_id       = get_current_blog_id();
 
-		$cutoff_date = strtotime('-' . $days . ' days');
+		$cutoff_date = strtotime( '-' . $days . ' days' );
 
-		$sql = "DELETE meta, log 
-       				FROM %i log
-					LEFT JOIN %i meta ON meta.event_id = log.ID
-					WHERE log.created < %d AND log.site_id = %d
-					";
+		$start_time = microtime( true );
 
-		$this->wpdb->query($this->wpdb->prepare($sql, $activity_log, $activity_meta, $cutoff_date, $site_id));
+		$sql_log = "
+        DELETE FROM %i
+        WHERE created < %d AND site_id = %d";
+		$this->wpdb->query($this->wpdb->prepare($sql_log, $activity_log, $cutoff_date, $site_id));
+
+		$sql_meta = "
+        DELETE FROM %i
+        WHERE event_id NOT IN (
+            SELECT ID FROM %i
+        )";
+		$this->wpdb->query($this->wpdb->prepare($sql_meta, $activity_meta, $activity_log));
+
+		$end_time                = microtime( true );
+		$execution_time          = $end_time - $start_time;
+		$execution_time_readable = number_format( $execution_time, 3 ) . ' ' . __('seconds', LOGDASH_DOMAIN );
 
 		$rows_affected = $this->wpdb->rows_affected;
 
@@ -68,8 +78,9 @@ class RemoveExpiredLog {
 		}
 
 		update_option( 'logdash_deleted_events', [
-			'rows' => $rows_affected,
-			'date' => time(),
+			'rows'           => $rows_affected,
+			'date'           => time(),
+			'execution_time' => $execution_time_readable
 		] );
 
 

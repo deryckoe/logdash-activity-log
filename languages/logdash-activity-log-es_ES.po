@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LogDash Activity Log\n"
-"POT-Creation-Date: 2023-05-22 11:27-0400\n"
-"PO-Revision-Date: 2023-05-22 11:28-0400\n"
+"POT-Creation-Date: 2024-06-29 10:51-0400\n"
+"PO-Revision-Date: 2024-06-29 10:51-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: logdash-activity-log.php\n"
@@ -23,122 +23,127 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: src/Actions/ResetLog.php:43
+#: src/Actions/RemoveExpiredLog.php:72
+msgid "seconds"
+msgstr "segundos"
+
+#: src/Actions/ResetLog.php:46
 msgid "There is an issue with reset request."
 msgstr "Hay un problema con la solicitud de restablecimiento."
 
-#: src/Actions/ResetLog.php:51
+#: src/Actions/ResetLog.php:54
 msgid "You are not authorized to perform this action."
 msgstr "No estás autorizado para realizar esta acción."
 
-#: src/Actions/ResetLog.php:62
+#: src/Actions/ResetLog.php:77
 #, php-format
 msgid "Reset failed: (%s)"
 msgstr "Reinicio fallido: (%s)"
 
-#: src/Actions/ResetLog.php:70
+#: src/Actions/ResetLog.php:85
 msgid "All events were deleted."
 msgstr "Se han eliminado todos los eventos."
 
-#: src/Admin/EventsPage.php:32
+#: src/Admin/EventsAdminPage.php:31
 msgid "LogDash Activity Log Viewer"
 msgstr "Visor de registros de actividad LogDash"
 
-#: src/Admin/EventsPage.php:33
+#: src/Admin/EventsAdminPage.php:32
 msgid "LogDash"
 msgstr "LogDash"
 
-#: src/Admin/EventsPage.php:45
+#: src/Admin/EventsAdminPage.php:45
 msgid "Activity Log"
 msgstr "Eventos"
 
-#: src/Admin/EventsPage.php:50
+#: src/Admin/EventsAdminPage.php:52
 msgid "Users Per Page"
 msgstr "Usuarios por página"
 
-#: src/Admin/EventsPage.php:65 views/admin/events.template.php:12
+#: src/Admin/EventsAdminPage.php:67 views/admin/events.template.php:12
 msgid "Search"
 msgstr "Buscar"
 
-#: src/Admin/EventsTable.php:30
+#: src/Admin/EventsListTable.php:26
 msgid "Code"
 msgstr "Código"
 
-#: src/Admin/EventsTable.php:31
+#: src/Admin/EventsListTable.php:27
 msgid "Date"
 msgstr "Fecha"
 
-#: src/Admin/EventsTable.php:32 src/Hooks/Users.php:311 src/Hooks/Users.php:362
+#: src/Admin/EventsListTable.php:28 src/Hooks/Users.php:325
+#: src/Hooks/Users.php:376
 msgid "User"
 msgstr "Usuario"
 
-#: src/Admin/EventsTable.php:33
+#: src/Admin/EventsListTable.php:29
 msgid "IP"
 msgstr "IP"
 
-#: src/Admin/EventsTable.php:34
+#: src/Admin/EventsListTable.php:30
 msgid "Context"
 msgstr "Contexto"
 
-#: src/Admin/EventsTable.php:35
+#: src/Admin/EventsListTable.php:31
 msgid "Action"
 msgstr "Acción"
 
-#: src/Admin/EventsTable.php:36
+#: src/Admin/EventsListTable.php:32
 msgid "Meta "
 msgstr "Meta "
 
-#: src/Admin/EventsTable.php:42
+#: src/Admin/EventsListTable.php:38
 msgid "No events have been found that meet your search criteria."
 msgstr ""
 "No se han encontrado eventos que se ajusten a sus criterios de búsqueda."
 
-#: src/Admin/EventsTable.php:44
+#: src/Admin/EventsListTable.php:40
 msgid "No events have been logged yet."
 msgstr "Aún no se ha registrado ningún evento."
 
-#: src/Admin/EventsTable.php:318
+#: src/Admin/EventsListTable.php:328
 #, php-format
 msgid "Select %s"
 msgstr "Seleccionar %s"
 
-#: src/Admin/EventsTable.php:348
+#: src/Admin/EventsListTable.php:362
 msgid "All time"
 msgstr "Todos"
 
-#: src/Admin/EventsTable.php:349
+#: src/Admin/EventsListTable.php:363
 msgid "Today"
 msgstr "Hoy"
 
-#: src/Admin/EventsTable.php:350
+#: src/Admin/EventsListTable.php:364
 msgid "Yesterday"
 msgstr "Ayer"
 
-#: src/Admin/EventsTable.php:351
+#: src/Admin/EventsListTable.php:365
 msgid "Last Week"
 msgstr "Semana pasada"
 
-#: src/Admin/EventsTable.php:352
+#: src/Admin/EventsListTable.php:366
 msgid "Last Month"
 msgstr "Mes pasado"
 
-#: src/Admin/EventsTable.php:379
+#: src/Admin/EventsListTable.php:393
 msgid "All Roles"
 msgstr "Todos los roles"
 
-#: src/Admin/EventsTable.php:396
+#: src/Admin/EventsListTable.php:410
 msgid "All Users"
 msgstr "Todos los usuarios"
 
-#: src/Admin/EventsTable.php:420
+#: src/Admin/EventsListTable.php:436
 msgid "All Contexts"
 msgstr "Todos"
 
-#: src/Admin/EventsTable.php:448
+#: src/Admin/EventsListTable.php:466
 msgid "All Actions"
 msgstr "Todas las acciones"
 
-#: src/Admin/EventsTable.php:462
+#: src/Admin/EventsListTable.php:480
 msgid "Reset filter"
 msgstr "Restablecer filtro"
 
@@ -163,15 +168,20 @@ msgstr "Ajustes Básicos"
 msgid "%s records were deleted on %s"
 msgstr "se borraron %s registros en %s"
 
-#: src/Admin/Settings.php:95
+#: src/Admin/Settings.php:91
+#, php-format
+msgid "and the execution time was %s"
+msgstr "y el tiempo de ejecución fue de %s"
+
+#: src/Admin/Settings.php:99
 msgid "Store logs for"
 msgstr "Almacenar registros para"
 
-#: src/Admin/Settings.php:105
+#: src/Admin/Settings.php:109
 msgid "days"
 msgstr "días"
 
-#: src/Admin/Settings.php:106
+#: src/Admin/Settings.php:110
 msgid ""
 "Specify the length of time you want to retain the activity log. If left "
 "blank, the activity log will be kept indefinitely, although this is not "
@@ -181,11 +191,11 @@ msgstr ""
 "deja en blanco, el registro de actividad se conservará indefinidamente, "
 "aunque no es recomendable."
 
-#: src/Admin/Settings.php:117
+#: src/Admin/Settings.php:121
 msgid "Delete Log Activities"
 msgstr "Borrar actividades de registro"
 
-#: src/Admin/Settings.php:126
+#: src/Admin/Settings.php:130
 msgid ""
 "Warning: Clicking this will delete all events from the database. Tables and "
 "structure will be maintained."
@@ -193,7 +203,7 @@ msgstr ""
 "Advertencia: Al hacer clic se borrarán todos los eventos de la base de "
 "datos. Se mantendrán las tablas y la estructura."
 
-#: src/Admin/Settings.php:127
+#: src/Admin/Settings.php:131
 msgid "All data will be deleted. Are you sure do you want to continue?"
 msgstr "Se borrarán todos los datos. ¿Está seguro de que desea continuar?"
 
@@ -644,10 +654,10 @@ msgstr "Versión antigua"
 msgid "New version"
 msgstr "Nueva Version"
 
-#: src/Hooks/Core.php:87 src/Hooks/Files.php:190 src/Hooks/Meta.php:191
+#: src/Hooks/Core.php:87 src/Hooks/Files.php:190 src/Hooks/Meta.php:192
 #: src/Hooks/Plugins.php:211 src/Hooks/Posts.php:702 src/Hooks/Settings.php:249
 #: src/Hooks/Taxonomies.php:203 src/Hooks/Themes.php:184
-#: src/Hooks/Users.php:414
+#: src/Hooks/Users.php:428
 msgid "User Agent"
 msgstr "Agente de usuario"
 
@@ -695,7 +705,16 @@ msgstr "Ruta temática"
 msgid "Edit "
 msgstr "Editar "
 
-#: src/Hooks/Meta.php:149 src/Hooks/Posts.php:435 src/Hooks/Posts.php:446
+#: src/Hooks/Meta.php:149 src/Hooks/Posts.php:434 src/Hooks/Posts.php:445
+#: src/Hooks/Posts.php:462 src/Hooks/Posts.php:478 src/Hooks/Posts.php:499
+#: src/Hooks/Posts.php:511 src/Hooks/Posts.php:524 src/Hooks/Posts.php:539
+#: src/Hooks/Posts.php:554 src/Hooks/Posts.php:569 src/Hooks/Posts.php:584
+#: src/Hooks/Posts.php:607 src/Hooks/Posts.php:622 src/Hooks/Posts.php:636
+#: src/Hooks/Posts.php:649 src/Hooks/Posts.php:670 src/Hooks/Posts.php:685
+msgid "Post ID"
+msgstr "ID de post"
+
+#: src/Hooks/Meta.php:150 src/Hooks/Posts.php:435 src/Hooks/Posts.php:446
 #: src/Hooks/Posts.php:463 src/Hooks/Posts.php:479 src/Hooks/Posts.php:500
 #: src/Hooks/Posts.php:512 src/Hooks/Posts.php:525 src/Hooks/Posts.php:540
 #: src/Hooks/Posts.php:555 src/Hooks/Posts.php:570 src/Hooks/Posts.php:585
@@ -704,7 +723,7 @@ msgstr "Editar "
 msgid "Post title"
 msgstr "Título del anuncio"
 
-#: src/Hooks/Meta.php:150 src/Hooks/Posts.php:437 src/Hooks/Posts.php:448
+#: src/Hooks/Meta.php:151 src/Hooks/Posts.php:437 src/Hooks/Posts.php:448
 #: src/Hooks/Posts.php:465 src/Hooks/Posts.php:481 src/Hooks/Posts.php:502
 #: src/Hooks/Posts.php:514 src/Hooks/Posts.php:527 src/Hooks/Posts.php:528
 #: src/Hooks/Posts.php:529 src/Hooks/Posts.php:542 src/Hooks/Posts.php:543
@@ -715,7 +734,7 @@ msgstr "Título del anuncio"
 msgid "Post type"
 msgstr "Tipo de entrada"
 
-#: src/Hooks/Meta.php:151 src/Hooks/Posts.php:436 src/Hooks/Posts.php:447
+#: src/Hooks/Meta.php:152 src/Hooks/Posts.php:436 src/Hooks/Posts.php:447
 #: src/Hooks/Posts.php:464 src/Hooks/Posts.php:480 src/Hooks/Posts.php:501
 #: src/Hooks/Posts.php:513 src/Hooks/Posts.php:526 src/Hooks/Posts.php:541
 #: src/Hooks/Posts.php:556 src/Hooks/Posts.php:571 src/Hooks/Posts.php:586
@@ -724,17 +743,17 @@ msgstr "Tipo de entrada"
 msgid "Post status"
 msgstr "Estado del contenido"
 
-#: src/Hooks/Meta.php:163 src/Hooks/Meta.php:178
+#: src/Hooks/Meta.php:164 src/Hooks/Meta.php:179
 msgid "Meta key"
 msgstr "Meta key"
 
-#: src/Hooks/Meta.php:164 src/Hooks/Meta.php:179 src/Hooks/Settings.php:222
-#: src/Hooks/Settings.php:236 src/Hooks/Users.php:386
+#: src/Hooks/Meta.php:165 src/Hooks/Meta.php:180 src/Hooks/Settings.php:222
+#: src/Hooks/Settings.php:236 src/Hooks/Users.php:400
 msgid "Old value"
 msgstr "Valor antiguo"
 
-#: src/Hooks/Meta.php:165 src/Hooks/Settings.php:211 src/Hooks/Settings.php:237
-#: src/Hooks/Users.php:315
+#: src/Hooks/Meta.php:166 src/Hooks/Settings.php:211 src/Hooks/Settings.php:237
+#: src/Hooks/Users.php:329
 msgid "New value"
 msgstr "Nuevo valor"
 
@@ -761,15 +780,6 @@ msgstr "Sin asignar"
 #: src/Hooks/Posts.php:417
 msgid "Differences"
 msgstr "Ver las diferencias"
-
-#: src/Hooks/Posts.php:434 src/Hooks/Posts.php:445 src/Hooks/Posts.php:462
-#: src/Hooks/Posts.php:478 src/Hooks/Posts.php:499 src/Hooks/Posts.php:511
-#: src/Hooks/Posts.php:524 src/Hooks/Posts.php:539 src/Hooks/Posts.php:554
-#: src/Hooks/Posts.php:569 src/Hooks/Posts.php:584 src/Hooks/Posts.php:607
-#: src/Hooks/Posts.php:622 src/Hooks/Posts.php:636 src/Hooks/Posts.php:649
-#: src/Hooks/Posts.php:670 src/Hooks/Posts.php:685
-msgid "Post ID"
-msgstr "ID de post"
 
 #: src/Hooks/Posts.php:449
 msgid "Old user"
@@ -1003,67 +1013,67 @@ msgstr "Nuevo nombre"
 msgid "Term slug"
 msgstr "Term slug"
 
-#: src/Hooks/Users.php:289
+#: src/Hooks/Users.php:303
 msgid "View profile"
 msgstr "Ver perfil"
 
-#: src/Hooks/Users.php:289
+#: src/Hooks/Users.php:303
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: src/Hooks/Users.php:312 src/Hooks/Users.php:328 src/Hooks/Users.php:400
+#: src/Hooks/Users.php:326 src/Hooks/Users.php:342 src/Hooks/Users.php:414
 msgid "Roles"
 msgstr "Roles"
 
-#: src/Hooks/Users.php:313
+#: src/Hooks/Users.php:327
 msgid "Updated field"
 msgstr "Campo actualizado"
 
-#: src/Hooks/Users.php:314
+#: src/Hooks/Users.php:328
 msgid "Previous value"
 msgstr "Valor anterior"
 
-#: src/Hooks/Users.php:327 src/Hooks/Users.php:399
+#: src/Hooks/Users.php:341 src/Hooks/Users.php:413
 msgid "User login"
 msgstr "Login del usuario"
 
-#: src/Hooks/Users.php:329
+#: src/Hooks/Users.php:343
 msgid "First name"
 msgstr "Nombre"
 
-#: src/Hooks/Users.php:330
+#: src/Hooks/Users.php:344
 msgid "Last name"
 msgstr "Apellidos"
 
-#: src/Hooks/Users.php:334
+#: src/Hooks/Users.php:348
 msgid "Reassign posts"
 msgstr "Reasignar posts"
 
-#: src/Hooks/Users.php:363
+#: src/Hooks/Users.php:377
 msgid "Attempts"
 msgstr "Intentos"
 
-#: src/Hooks/Users.php:364
+#: src/Hooks/Users.php:378
 msgid "Last attempt"
 msgstr "Último intento"
 
-#: src/Hooks/Users.php:365
+#: src/Hooks/Users.php:379
 msgid "Last Error"
 msgstr "Ultimo error"
 
-#: src/Hooks/Users.php:385
+#: src/Hooks/Users.php:399
 msgid "User field"
 msgstr "Campo de usuario"
 
-#: src/Hooks/Users.php:387
+#: src/Hooks/Users.php:401
 msgid "New new"
 msgstr "Nuevo Nuevo"
 
-#: src/Hooks/Users.php:401
+#: src/Hooks/Users.php:415
 msgid "First Name"
 msgstr "Nombre"
 
-#: src/Hooks/Users.php:402
+#: src/Hooks/Users.php:416
 msgid "Last Name"
 msgstr "Apellido"
 

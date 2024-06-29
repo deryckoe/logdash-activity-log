@@ -52,7 +52,7 @@ function resetLog() {
     if (reset_log_anchor) {
 
         const message_element = document.getElementById('logdash_message');
-        const message = createElement('p');
+        const message = document.createElement('p');
 
         reset_log_anchor.addEventListener('click', (e) => {
 
