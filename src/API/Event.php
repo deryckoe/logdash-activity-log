@@ -2,15 +2,11 @@
 
 namespace LogDash\API;
 
-use LogDash\EventCodes;
-
 class Event {
 	private static $_instance = null;
 	private int $event_id;
 
 	public function __construct() {
-		add_action( 'tally_get_user_ip', [ $this, 'get_ip_details' ] );
-		add_action( 'tally_save_ip_details', [ $this, 'save_ip_details' ] );
 	}
 
 	public function insert( $event_type, $event_code, $object_type, $object_subtype = '', $object_id = '', $user_id = '', $user_caps = '' ) {
@@ -128,18 +124,12 @@ class Event {
 		return ( (int) $result[0]['event_code'] === $event_code && (int) $result[0]['object_id'] === $object_id );
 	}
 
-	private function user_ip() {
+	private function user_ip(): string {
 
 		$ip = '';
 
 		if ( defined( 'LOGDASH_TEST_IPS' ) && is_array( LOGDASH_TEST_IPS ) ) {
 			$ip = LOGDASH_TEST_IPS[ array_rand( LOGDASH_TEST_IPS ) ];
-		}
-
-		if ( ! empty( $ip ) ) {
-			do_action( 'tally_get_user_ip', $ip );
-
-			return $ip;
 		}
 
 		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
@@ -157,64 +147,7 @@ class Event {
 			$ip = $matches[0];
 		}
 
-		do_action( 'tally_get_user_ip', $ip );
-
 		return $ip;
-	}
-
-	public function get_ip_details( $ip ) {
-		wp_schedule_single_event( time() + 5, 'tally_save_ip_details', [ $ip ] );
-	}
-
-	public function save_ip_details( $ip ) {
-		global $wpdb;
-
-		$ip_table = DB::ip_table();
-		$have_ip  = $wpdb->get_results( $wpdb->prepare( "SELECT ID FROM %i WHERE ip = %s", $ip_table, $ip ) );
-
-		if ( ! empty( $have_ip ) ) {
-			return;
-		}
-
-		$response = wp_remote_get( "https://api.findip.net/$ip/?token=" . LOGDASH_FINDIP_TOKEN );
-
-		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-
-			$body = wp_remote_retrieve_body( $response );
-
-			$ip_data = json_decode( $body );
-			$ip_info = [
-				'ip'           => $ip,
-				'city'         => $ip_data->city->names->en ?? null,
-				'country_name' => $ip_data->country->names->en ?? null,
-				'country_code' => $ip_data->country->iso_code ?? null,
-				'lat'          => $ip_data->location->latitude ?? null,
-				'lon'          => $ip_data->location->longitude ?? null,
-				'isp'          => $ip_data->traits->isp ?? null,
-			];
-
-		} else {
-
-			$ip_info = [
-				'ip'           => $ip,
-				'city'         => null,
-				'country_name' => null,
-				'country_code' => null,
-				'lat'          => null,
-				'lon'          => null,
-				'isp'          => null,
-			];
-
-		}
-
-		if ( empty( $ip_info['ip'] ) ) {
-			return;
-		}
-
-		$format = [ '%s', '%s', '%s', '%s', '%s', '%s', '%s' ];
-
-		$wpdb->insert( $ip_table, $ip_info, $format );
-		echo $wpdb->last_error;
 	}
 
 	public static function instance(): ?Event {
