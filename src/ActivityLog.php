@@ -51,7 +51,6 @@ class ActivityLog {
 			Files::class,
 			Taxonomies::class,
 			Posts::class,
-			Meta::class,
 			RestEndpoints::class
 		];
 
