@@ -250,3 +250,8 @@ th#event_meta {
   from { max-height: 0 }
   to { max-height: 600px }
 }
+
+
+select.ld-select + .select2-container .select2-selection--single {
+  height: 30px;
+}

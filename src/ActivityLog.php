@@ -63,6 +63,8 @@ class ActivityLog {
 		$js_dependencies = [ 'wp-api', 'wp-element' ];
 		wp_enqueue_script( 'logdash-activity-log', LOGDASH_URL . 'assets/build/index.js', $js_dependencies, LOGDASH_VERSION, true );
 		wp_enqueue_style( 'logdash-activity-log', LOGDASH_URL . 'assets/build/index.css', [], LOGDASH_VERSION );
+		wp_enqueue_script( 'logdash-select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'] );
+		wp_enqueue_style( 'logdash-select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css' );
 	}
 
 	function assets() {

@@ -103,3 +103,8 @@ function resetLog() {
     }
 
 }
+
+
+jQuery(document).ready(function($) {
+    $('select.ld-select').select2();
+});

@@ -100,19 +100,25 @@ class EventsListTable extends \WP_List_Table {
 
 		if ( ! empty( $_GET['dateshow'] ) ) {
 
-			$date_show = sanitize_text_field( $_GET['dateshow'] );
+			$date_show         = sanitize_text_field( $_GET['dateshow'] );
+			$current_timestamp = time();
 
 			if ( $date_show === 'today' ) {
-				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') = CURRENT_DATE ";
+				$start_timestamp = strtotime( 'today' );
 			}
 			if ( $date_show === 'yesterday' ) {
-				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') = DATE_SUB(CURRENT_DATE, INTERVAL 1 DAY) ";
+				$start_timestamp   = strtotime( 'yesterday' );
+				$current_timestamp = strtotime( 'today' );
 			}
 			if ( $date_show === 'week' ) {
-				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') >= DATE_SUB(CURRENT_DATE, INTERVAL 1 WEEK) ";
+				$start_timestamp = strtotime( '-1 week' );
 			}
 			if ( $date_show === 'month' ) {
-				$where .= " AND FROM_UNIXTIME(created, '%Y-%m-%d') >= DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH) ";
+				$start_timestamp = strtotime( '-1 month' );
+			}
+
+			if ( ! empty( $start_timestamp ) ) {
+				$where .= " AND created BETWEEN $start_timestamp AND $current_timestamp";
 			}
 
 		}
@@ -147,8 +153,7 @@ class EventsListTable extends \WP_List_Table {
 		global $wpdb;
 
 		$where_condition = $this->apply_where_filter();
-
-		$query = $wpdb->prepare( "SELECT COUNT(*) as AGGREGATE FROM %i " . $where_condition, DB::log_table() );
+		$query           = $wpdb->prepare( "SELECT COUNT(*) as AGGREGATE FROM %i {$where_condition}", DB::log_table() );
 
 		return (int) $wpdb->get_var( $query );
 	}
@@ -369,7 +374,7 @@ HTML;
 			$selected_date_show = isset( $_GET['dateshow'] ) ? sanitize_text_field( $_GET['dateshow'] ) : '';
 
 			?>
-            <select name="dateshow" id="temp-1">
+            <select class="ld-select" name="dateshow" id="temp-1">
 				<?php foreach ( $date_show as $value => $label ) : ?>
                     <option
                             value="<?php echo esc_attr( $value ) ?>" <?php selected( esc_attr( $selected_date_show ), esc_attr( $value ) ) ?>><?php echo esc_html( $label ) ?></option>
@@ -389,7 +394,7 @@ HTML;
 
 			?>
 
-            <select name="capshow" id="temp-2">
+            <select class="ld-select" name="capshow" id="temp-2">
                 <option value=""><?php esc_attr_e( 'All Roles', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $caps_results as $cap ) : ?>
                     <option
@@ -406,7 +411,7 @@ HTML;
 			$selected_user = isset( $_GET['usershow'] ) ? sanitize_text_field( $_GET['usershow'] ) : '';
 
 			?>
-            <select name="usershow" id="temp-3">
+            <select class="ld-select" name="usershow" id="temp-3">
                 <option value=""><?php _e( 'All Users', LOGDASH_DOMAIN ); ?></option>
 				<?php foreach ( $users_result as $user ) : ?>
 					<?php $user_data = get_user_by( 'ID', $user->user_id ); ?>
@@ -432,7 +437,7 @@ HTML;
 			$selected_type = isset( $_GET['subtypeshow'] ) ? sanitize_text_field( $_GET['subtypeshow'] ) : '';
 
 			?>
-            <select name="subtypeshow" id="temp-4">
+            <select class="ld-select" name="subtypeshow" id="temp-4">
                 <option value=""><?php _e( 'All Contexts', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $type_result as $type ) :
 					?>
@@ -462,7 +467,7 @@ HTML;
 			$selected_type = isset( $_GET['actionshow'] ) ? sanitize_text_field( $_GET['actionshow'] ) : '';
 
 			?>
-            <select name="actionshow" id="temp-5">
+            <select class="ld-select" name="actionshow" id="temp-5">
                 <option value=""><?php _e( 'All Actions', LOGDASH_DOMAIN ) ?></option>
 				<?php foreach ( $action_result as $action ) : ?>
                     <option
