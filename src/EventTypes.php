@@ -18,6 +18,12 @@ class EventTypes {
 	const INSTALLED = 'installed';
 	const UPLOADED = 'uploaded';
 	const OPENED = 'opened';
+	const COMPLETED = 'completed';
+	const UNCOMPLETED = 'uncompleted';
+	const ENROLLED = 'enrolled';
+	const UNENROLLED = 'unenrolled';
+	const ADDED = 'added';
+	const REMOVED = 'removed';
 
 	private static array $labels = [
 		self::CREATED      => 'Created',
@@ -34,6 +40,12 @@ class EventTypes {
 		self::INSTALLED    => 'Installed',
 		self::UPLOADED     => 'Uploaded',
 		self::OPENED       => 'Opened',
+		self::COMPLETED    => 'Opened',
+		self::UNCOMPLETED  => 'Opened',
+		self::ENROLLED     => 'Opened',
+		self::UNENROLLED   => 'Opened',
+		self::ADDED        => 'Added',
+		self::REMOVED      => 'Removed',
 	];
 
 	public static function label( $code ) {

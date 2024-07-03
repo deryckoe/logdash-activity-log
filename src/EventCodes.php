@@ -107,6 +107,13 @@ class EventCodes {
 	const TERM_DELETED = 1911;
 	const TERM_UPDATED = 1912;
 
+	const COMPLETED = 2010;
+	const UNCOMPLETED = 2011;
+	const ENROLLED = 2012;
+	const UNENROLLED = 2013;
+	const ADDED = 2014;
+	const REMOVED = 2015;
+
 	private static array $description = [];
 
 	public static function desc( $code ) {
@@ -208,6 +215,13 @@ class EventCodes {
 			self::TERM_CREATED => __( 'Created term %s in taxonomy %s.', LOGDASH_DOMAIN ),
 			self::TERM_DELETED => __( 'Deleted term %s in taxonomy %s.', LOGDASH_DOMAIN ),
 			self::TERM_UPDATED => __( 'Updated taxonomy %s from %s (%s) to %s (%s).', LOGDASH_DOMAIN ),
+
+			self::COMPLETED => __( 'Completed %s.', LOGDASH_DOMAIN ),
+			self::UNCOMPLETED => __( '% changed to uncompleted.', LOGDASH_DOMAIN ),
+			self::ENROLLED => __( 'Enrolled to %s', LOGDASH_DOMAIN ),
+			self::UNENROLLED => __( 'Unenrolled to %s', LOGDASH_DOMAIN ),
+			self::ADDED => __( 'Added to %s', LOGDASH_DOMAIN ),
+			self::REMOVED => __( 'Removed from %s', LOGDASH_DOMAIN ),
 		];
 
 		return self::$description[ $code ];
