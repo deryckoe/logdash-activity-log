@@ -53,7 +53,7 @@ class Posts extends HooksBase {
 	}
 
 	public function actions() {
-		add_action( 'current_screen', [ $this, 'post_opened' ] );
+//		add_action( 'current_screen', [ $this, 'post_opened' ] );
 		add_action( 'pre_post_update', [ $this, 'before_post_update' ], 10, 2 );
 		add_action( 'wp_trash_post', [ $this, 'post_trashed' ], 10, 1 );
 		add_action( 'untrash_post', [ $this, 'post_untrashed' ] );

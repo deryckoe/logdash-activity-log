@@ -287,6 +287,10 @@ class Users extends HooksBase {
 
 	public function event_meta_info( $output, $event_data, $meta_data ): string {
 
+		if ( $event_data['object_subtype'] !== 'user' ) {
+			return $output;
+		}
+
 		$user = ( ! empty( $event_data['object_id'] ) )
 			? get_user_by( 'ID', $event_data['object_id'] )
 			: null;

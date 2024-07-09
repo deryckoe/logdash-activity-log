@@ -25,31 +25,31 @@ class EventTypes {
 	const ADDED = 'added';
 	const REMOVED = 'removed';
 
-	private static array $labels = [
-		self::CREATED      => 'Created',
-		self::MODIFIED     => 'Modified',
-		self::LOGIN        => 'Login',
-		self::LOGOUT       => 'Logout',
-		self::FAILED_LOGIN => 'Failed Login',
-		self::TRASHED      => 'Trashed',
-		self::DELETED      => 'Deleted',
-		self::RESTORED     => 'Restored',
-		self::ACTIVATED    => 'Activated',
-		self::DEACTIVATED  => 'Deactivated',
-		self::UPGRADED     => 'Upgraded',
-		self::INSTALLED    => 'Installed',
-		self::UPLOADED     => 'Uploaded',
-		self::OPENED       => 'Opened',
-		self::COMPLETED    => 'Opened',
-		self::UNCOMPLETED  => 'Opened',
-		self::ENROLLED     => 'Opened',
-		self::UNENROLLED   => 'Opened',
-		self::ADDED        => 'Added',
-		self::REMOVED      => 'Removed',
-	];
-
 	public static function label( $code ) {
-		return self::$labels[ $code ];
+		$labels = [
+			self::CREATED      => __( 'Created', LOGDASH_DOMAIN ),
+			self::MODIFIED     => __( 'Modified', LOGDASH_DOMAIN ),
+			self::LOGIN        => __( 'Login', LOGDASH_DOMAIN ),
+			self::LOGOUT       => __( 'Logout', LOGDASH_DOMAIN ),
+			self::FAILED_LOGIN => __( 'Failed Login', LOGDASH_DOMAIN ),
+			self::TRASHED      => __( 'Trashed', LOGDASH_DOMAIN ),
+			self::DELETED      => __( 'Deleted', LOGDASH_DOMAIN ),
+			self::RESTORED     => __( 'Restored', LOGDASH_DOMAIN ),
+			self::ACTIVATED    => __( 'Activated', LOGDASH_DOMAIN ),
+			self::DEACTIVATED  => __( 'Deactivated', LOGDASH_DOMAIN ),
+			self::UPGRADED     => __( 'Upgraded', LOGDASH_DOMAIN ),
+			self::INSTALLED    => __( 'Installed', LOGDASH_DOMAIN ),
+			self::UPLOADED     => __( 'Uploaded', LOGDASH_DOMAIN ),
+			self::OPENED       => __( 'Opened', LOGDASH_DOMAIN ),
+			self::COMPLETED    => __( 'Completed', LOGDASH_DOMAIN ),
+			self::UNCOMPLETED  => __( 'Uncompleted', LOGDASH_DOMAIN ),
+			self::ENROLLED     => __( 'Enrolled', LOGDASH_DOMAIN ),
+			self::UNENROLLED   => __( 'Unenrolled', LOGDASH_DOMAIN ),
+			self::ADDED        => __( 'Added', LOGDASH_DOMAIN ),
+			self::REMOVED      => __( 'Removed', LOGDASH_DOMAIN ),
+		];
+
+		return $labels[ $code ];
 	}
 
 }
