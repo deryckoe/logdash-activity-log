@@ -1,9 +1,9 @@
 === LogDash Activity Log ===
 Contributors: deryck
 Donate link: https://www.paypal.com/donate/?hosted_button_id=XHK37YBVVMP58
-Tags: Activity Log, User Activity, User Log, Audit Log, Security, Tracking, WooCommerce, bbPress, GDPR,
+Tags: Activity Log, User Activity, User Log, Audit Log
 Requires at least: 5.9.5
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 7.4
 Stable tag: 1.2
 License: GPLv2 or later
@@ -37,8 +37,7 @@ LogDash Activity Log is FREE. You can keep your log events for as long as you ne
 * __Plugins:__ such as downloads, installations, upgrades, activations, theme switch and deletions.
 * __Files:__ such as uploads or every files, including plugins and themes and updates in WordPress theme or plugin editors.
 * __Attachments:__ Uploads and updates for every attachment.
-* __Posts, Pages and Custom Posts:__ such as title, content (with quick link to rollback revisions), status, taxonomies and many more. 
-* __Meta fields:__ such as every meta data associated to every post type and users.
+* __Posts, Pages and Custom Posts:__ such as title, content (with quick link to rollback revisions), status, taxonomies and many more.
 * __Settings:__ such as the Blog Title, Date format and every setting in WordPress.
 * __Categories, Tags and Custom Taxonomies:__ such as creating, removing, updating and adding values to posts, pages and custom posts.
 * __Users profile changes:__ such as name, email, role changes (including support for multiple roles) and every profile related data.
