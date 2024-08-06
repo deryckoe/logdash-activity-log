@@ -30,10 +30,70 @@ class LearnDash extends HooksBase {
 
 	public function actions() {
 		add_action( 'learndash_course_completed', [ $this, 'course_completed' ] );
+
+		add_action( 'ld_added_group_access', [ $this, 'added_group_access' ], 10, 2 );
+		add_action( 'ld_removed_group_access', [ $this, 'removed_group_access' ], 10, 2 );
+		add_action('learndash_update_course_access', [ $this, 'update_course_access' ], 10, 4 );
 		add_filter( 'logdash_manage_columns-' . self::$object_type . '-content_event_meta', [
 			$this,
 			'event_meta_info'
 		], 10, 3 );
+	}
+
+	public function added_group_access( $user_id, $group_id ): void {
+		$this->update_group_access( $user_id, $group_id, EventTypes::ENROLLED, EventCodes::ENROLLED );
+	}
+	public function removed_group_access( $user_id, $group_id ): void {
+		$this->update_group_access( $user_id, $group_id, EventTypes::UNENROLLED, EventCodes::UNENROLLED );
+	}
+
+	private function update_group_access( $user_id, $group_id, $event_type, $event_code ): void {
+		$user = get_user_by( 'id', $user_id );
+		$group = get_post( $group_id );
+
+		$meta = [
+			new EventMeta( 'postTitle', $group->post_title ),
+			new EventMeta( 'postType', $group->post_type ),
+		];
+
+		$this->event->insert(
+			$event_type,
+			$event_code,
+			self::$object_type,
+			$group->post_type,
+			$group->ID,
+			$user->ID,
+			$user->roles[0],
+		)->attachMany( $meta );
+	}
+
+	public function update_course_access( $user_id, $course_id, $course_access_list, $remove ): void {
+		if ( $remove ) {
+			$event_type = EventTypes::UNENROLLED;
+			$event_code = EventCodes::UNENROLLED;
+		} else {
+			$event_type = EventTypes::ENROLLED;
+			$event_code = EventCodes::ENROLLED;
+		}
+
+		$user = get_user_by( 'id', $user_id );
+		$course = get_post( $course_id );
+
+		$meta = [
+			new EventMeta( 'postTitle', $course->post_title ),
+			new EventMeta( 'postType', $course->post_type ),
+		];
+
+		$this->event->insert(
+			$event_type,
+			$event_code,
+			self::$object_type,
+			$course->post_type,
+			$course->ID,
+			$user->ID,
+			$user->roles[0],
+		)->attachMany( $meta );
+
 	}
 
 
@@ -96,7 +156,7 @@ class LearnDash extends HooksBase {
 
 	public function event_meta_info( $output, $event_data, $meta_data ) {
 
-		if ( $event_data['object_subtype'] !== 'sfwd-courses' ) {
+		if ( ! in_array( $event_data['object_subtype'], ['sfwd-courses', 'groups'] ) ) {
 			return $output;
 		}
 
@@ -130,6 +190,25 @@ class LearnDash extends HooksBase {
 						new Specification( __( 'Evaluation Score', LOGDASH_DOMAIN ), $score ),
 					] );
 				}
+
+				break;
+			case EventCodes::ENROLLED:
+			case EventCodes::UNENROLLED:
+				$data    = [
+					new Label( $meta_data['postTitle'] ),
+				];
+
+				$post_type = get_post_type_object( $meta_data['postType']  );
+				if ( ! empty( $post_type->labels ) ) {
+					$singular_name = $post_type->labels->singular_name;
+					$post_type = " $singular_name ($post_type->name)";
+				}
+
+				$details = [
+					new Specification( __( 'Post ID', LOGDASH_DOMAIN ), $event_data['object_id'] ),
+					new Specification( __( 'Post title', LOGDASH_DOMAIN ), $meta_data['postTitle'] ),
+					new Specification( __( 'Post type', LOGDASH_DOMAIN ), $post_type ),
+				];
 
 				break;
 			default:
