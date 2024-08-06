@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LogDash Activity Log\n"
 "POT-Creation-Date: 2024-07-09 14:44-0400\n"
-"PO-Revision-Date: 2024-07-09 14:46-0400\n"
+"PO-Revision-Date: 2024-08-06 17:02-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -464,7 +464,7 @@ msgstr "Autor actualizado de %s a %s en el post %s"
 #: src/EventCodes.php:181 src/EventInfo.php:221
 #, php-format
 msgid "Updated publish date from %s to %s for post %s"
-msgstr "Actualizada la fecha de publicación de %s a %s para el post %s"
+msgstr "Actualizada la fecha de publicación de %s a %s para la entrada %s"
 
 #: src/EventCodes.php:182 src/EventInfo.php:225
 #, php-format
@@ -504,7 +504,7 @@ msgstr "Eliminada miniatura de entrada destacada %s para entrada %s."
 #: src/EventCodes.php:189 src/EventInfo.php:245
 #, php-format
 msgid "Permanently Deleted post %s."
-msgstr "Puesto borrado permanentemente %s."
+msgstr "Entrada borrada permanentemente %s."
 
 #: src/EventCodes.php:190 src/EventInfo.php:241
 #, php-format
@@ -514,17 +514,17 @@ msgstr "Movido el post %s a la papelera."
 #: src/EventCodes.php:191 src/EventInfo.php:249
 #, php-format
 msgid "Restored post %s from trash."
-msgstr "Puesto %s restaurado de la papelera."
+msgstr "Entrada %s restaurada de la papelera."
 
 #: src/EventCodes.php:192 src/EventInfo.php:253
 #, php-format
 msgid "Published post %s."
-msgstr "Puesto publicado %s."
+msgstr "Entrada publicada %s."
 
 #: src/EventCodes.php:193 src/EventInfo.php:257
 #, php-format
 msgid "Post %s set as scheduled for %s."
-msgstr "Puesto %s fijado como programado para %s."
+msgstr "Entrada %s fijado como programada para %s."
 
 #: src/EventCodes.php:194 src/EventInfo.php:273
 #, php-format
